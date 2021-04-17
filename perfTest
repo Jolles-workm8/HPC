@@ -1,0 +1,8 @@
+#!/bin/bash
+echo "Cores, MFLOPS" > Meassured.csv
+for var in $(seq 1 32)
+	do perf=$(/home/max/software/Likwid/bin/likwid-bench -t peak_asimd_scalar_sp -w S0:1GB:$var) 
+	value=$(grep "MFlops/s:" <<< "$perf" | grep -o "[0-9.]\+")  
+	echo $value
+	echo "$var, $value" >> Meassured.csv
+done
