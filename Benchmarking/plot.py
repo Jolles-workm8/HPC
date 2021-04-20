@@ -7,7 +7,7 @@ import matplotlib.colors as mcolors
 
 
 def plot_scalar_simd():
-    df=pd.read_csv("./SP_Scalar_pinned.csv")
+    df=pd.read_csv("./SP_SIMD_pinned_new.csv")
 
 
 
