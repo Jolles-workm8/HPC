@@ -37,3 +37,5 @@ fmla       | 2.5*10^9 * 4 * 2 / 3     | 6.66666 GFlop/s
   
 5. The result of the benchmarking using one destination register were:
   ![alt text](https://github.com/Jolles-workm8/HPC/blob/main/Pipelining/fmul_fmla_dst.png)
+  
+You can find the .csv files and the code in /Pipelines
