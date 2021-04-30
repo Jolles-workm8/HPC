@@ -23,5 +23,5 @@ Mircobenchmarking of the Neoverse N2 ARM-Processor in the aws Grvaiton V2 Server
 This instruction multiplies 2 floating-point values and adds the product to the corresponding vector element. The bits 0-4 (Rd) and 5-9 (Rn) are encoding the registers where the sourcedata can be found. The bits 16-20 (Rm) are encoding the destination register.
 
 ## Pipelining
-1. 1. The metrics in the [Arm Neoverse N1 Software Optimization Guide](https://developer.arm.com/documentation/swog309707/a) were:
-[alt text](https://github.com/Jolles-workm8/HPC/blob/main/Pipelining/fmla_fmul.png)
+1. The metrics in the [Arm Neoverse N1 Software Optimization Guide](https://developer.arm.com/documentation/swog309707/a) were:
+![alt text](https://github.com/Jolles-workm8/HPC/blob/main/Pipelining/fmla_fmul.png)
