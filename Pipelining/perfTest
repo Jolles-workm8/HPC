@@ -1,7 +1,7 @@
 #!/bin/bash
 echo "Cores, MFLOPS" > latency_fmla.csv
 for var in $(seq 1 16)
-	do perf=$(/home/julius/software/Likwid/bin/likwid-bench -t latency_scr_asimd_fmla_sp -w S0:1GB:$var)
+	do perf=$(/home/max/software/Likwid/bin/likwid-bench -t latency_src_asimd_fmla_sp -w S0:1GB:$var)
 	value=$(grep "MFlops/s:" <<< "$perf" | grep -o "[0-9.]\+")
 	echo $value
 	echo "$var, $value" >> latency_fmla.csv
@@ -9,7 +9,7 @@ done
 
 echo "Cores, MFLOPS" > latency_fmul.csv
 for var in $(seq 1 16)
-	do perf=$(/home/julius/software/Likwid/bin/likwid-bench -t latency_scr_asimd_fmul_sp -w S0:1GB:$var)
+	do perf=$(/home/max/software/Likwid/bin/likwid-bench -t latency_src_asimd_fmul_sp -w S0:1GB:$var)
 	value=$(grep "MFlops/s:" <<< "$perf" | grep -o "[0-9.]\+")
 	echo $value
 	echo "$var, $value" >> latency_fmul.csv
