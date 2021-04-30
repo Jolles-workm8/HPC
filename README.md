@@ -21,3 +21,6 @@ Mircobenchmarking of the Neoverse N2 ARM-Processor in the aws Grvaiton V2 Server
 
 3. The variable `unsigned int i_vec_instr` encodes a Floating-point fused Multiply-Add to accumulator vector-operation and contains an instruction-vector which contains the source registers, the destination register, the (byte)-length of the participating data.
 This instruction multiplies 2 floating-point values and adds the product to the corresponding vector element. The bits 0-4 (Rd) and 5-9 (Rn) are encoding the registers where the sourcedata can be found. The bits 16-20 (Rm) are encoding the destination register.
+
+## Pipelining
+1. [alt text](https://github.com/Jolles-workm8/HPC/blob/main/Pipelining/fmla_fmul.png)
