@@ -25,3 +25,8 @@ This instruction multiplies 2 floating-point values and adds the product to the 
 ## Pipelining
 1. The metrics in the [Arm Neoverse N1 Software Optimization Guide](https://developer.arm.com/documentation/swog309707/a) were:
 ![alt text](https://github.com/Jolles-workm8/HPC/blob/main/Pipelining/fmla_fmul.png)
+2. We can calculate the theoretical GFLOP/s via : Clockcycles * ASIMD (128Bit per Operation) * Throughput * FMA / Latency(just one operation at a time)
+  |Operation  |calculation              |result         | 
+  |-----------|-------------------------|---------------|
+  |fmul       |2.5*10^9 * 4 * 2 * 2 / 4 |8 GFlop/s      |
+  |fmla       |2.5*10^9 * 4 * 2 / 3     |6.66666 GFlop/s|
