@@ -32,8 +32,8 @@ Operation | Calculation | Result
 fmul       | 2.5*10^9 * 4 * 2 * 2 / 4 | 10 GFlop/s      
 fmla       | 2.5*10^9 * 4 * 2 / 3     | 6.66666 GFlop/s 
 
-3. The result of the benchmarking using one source register were:
+3. & 4. The result of the benchmarking using one source register were:
   ![alt text](https://github.com/Jolles-workm8/HPC/blob/main/Pipelining/fmul_fmla_src.png)
   
-4. The result of the benchmarking using one destination register were:
+5. The result of the benchmarking using one destination register were:
   ![alt text](https://github.com/Jolles-workm8/HPC/blob/main/Pipelining/fmul_fmla_dst.png)
