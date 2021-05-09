@@ -1,0 +1,36 @@
+Lambda:4
+Time:0.00203287
+GFLOP's: 0.314826
+
+Lambda:8
+Time:0.0152738
+GFLOP's: 0.335214
+
+Lambda:12
+Time:0.051128
+GFLOP's: 0.337976
+
+Lambda:16
+Time:0.11977
+GFLOP's: 0.341988
+
+Lambda:24
+Time:0.41504
+GFLOP's: 0.333077
+
+Lambda:32
+Time:0.983082
+GFLOP's: 0.333319
+
+Lambda:48
+Time:3.31147
+GFLOP's: 0.333967
+
+Lambda:64
+Time:7.84415
+GFLOP's: 0.33419
+
+gemm_compiler_mnk: 0.37179	 GFLOP's
+
+gemm_compiler_nkm: 0.363637	 GFLOP's
+ 
