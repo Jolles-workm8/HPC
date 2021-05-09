@@ -1,0 +1,2 @@
+/usr/bin/ar qc libgemm_ref.a  CMakeFiles/gemm_ref.dir/gemm_ref.cpp.o
+/usr/bin/ranlib libgemm_ref.a

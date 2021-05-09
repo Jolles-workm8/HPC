@@ -1,0 +1,6 @@
+/home/jolles/Documents/MasterDataScience/HPC/Small_GEMMs/build/CMakeFiles/rebuild_cache.dir
+/home/jolles/Documents/MasterDataScience/HPC/Small_GEMMs/build/CMakeFiles/edit_cache.dir
+/home/jolles/Documents/MasterDataScience/HPC/Small_GEMMs/build/CMakeFiles/test.dir
+/home/jolles/Documents/MasterDataScience/HPC/Small_GEMMs/build/CMakeFiles/tests.dir
+/home/jolles/Documents/MasterDataScience/HPC/Small_GEMMs/build/CMakeFiles/driver.dir
+/home/jolles/Documents/MasterDataScience/HPC/Small_GEMMs/build/CMakeFiles/gemm_ref.dir
