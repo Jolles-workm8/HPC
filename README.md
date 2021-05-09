@@ -42,4 +42,5 @@ You can find the .csv files and the code in /Pipelines
 
 ##Small GEMM's
 1. You can find the code in the folder Small_GEMMs
-2. The number of required operations to solve the Matrix-Matrix product of A * B is N * M * K. Given A is a N * M Matrix and B is a M * K Matrix.
+2. The number of required operations to solve the Matrix-Matrix product of A * B, given A is a M * K Matrix and B is a K * N Matrix is : 
+   2 * K * M * N 
