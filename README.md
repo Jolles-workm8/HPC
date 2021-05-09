@@ -27,15 +27,19 @@ This instruction multiplies 2 floating-point values and adds the product to the 
 ![alt text](https://github.com/Jolles-workm8/HPC/blob/main/Pipelining/fmla_fmul.png)
 2. We can calculate the theoretical GFLOP/s via : Clockcycles * ASIMD (128Bit per Operation) * Throughput * FMA / Latency(just one operation at a time)
 
-Operation | Calculation | Result 
---- | --- | --- 
+Operation | Calculation | Result
+--- | --- | ---
 fmul       | 2.5*10^9 * 4 * 2 * 2 / 4 | 10 GFlop/s      
-fmla       | 2.5*10^9 * 4 * 2 / 3     | 6.66666 GFlop/s 
+fmla       | 2.5*10^9 * 4 * 2 / 3     | 6.66666 GFlop/s
 
 3. & 4. The result of the benchmarking using one source register were:
   ![alt text](https://github.com/Jolles-workm8/HPC/blob/main/Pipelining/fmul_fmla_src.png)
-  
+
 5. The result of the benchmarking using one destination register were:
   ![alt text](https://github.com/Jolles-workm8/HPC/blob/main/Pipelining/fmul_fmla_dst.png)
-  
+
 You can find the .csv files and the code in /Pipelines
+
+##Small GEMM's
+1. You can find the code in the folder Small_GEMMs
+2. The number of required operations to solve the Matrix-Matrix product of A * B is N * M * K. Given A is a N * M Matrix and B is a M * K Matrix.
