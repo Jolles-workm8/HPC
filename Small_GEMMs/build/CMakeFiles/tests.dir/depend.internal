@@ -3,5 +3,6 @@
 
 CMakeFiles/tests.dir/tests.cpp.o
  /home/jolles/Documents/MasterDataScience/HPC/Small_GEMMs/catch/catch.hpp
+ /home/jolles/Documents/MasterDataScience/HPC/Small_GEMMs/gemm_compiler_32_32_32_32_32_32.hpp
  /home/jolles/Documents/MasterDataScience/HPC/Small_GEMMs/gemm_ref.hpp
  /home/jolles/Documents/MasterDataScience/HPC/Small_GEMMs/tests.cpp

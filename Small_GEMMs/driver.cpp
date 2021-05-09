@@ -1,3 +1,4 @@
+#include "gemm_compiler_32_32_32_32_32_32.hpp"
 #include "gemm_ref.hpp"
 #include <chrono>
 #include <iostream>

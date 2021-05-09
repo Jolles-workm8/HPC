@@ -55,6 +55,7 @@ CMAKE_BINARY_DIR = /home/jolles/Documents/MasterDataScience/HPC/Small_GEMMs/buil
 # The main recursive "all" target.
 all: CMakeFiles/tests.dir/all
 all: CMakeFiles/driver.dir/all
+all: CMakeFiles/gemm_compiler.dir/all
 all: CMakeFiles/gemm_ref.dir/all
 
 .PHONY : all
@@ -67,6 +68,7 @@ preinstall:
 # The main recursive "clean" target.
 clean: CMakeFiles/tests.dir/clean
 clean: CMakeFiles/driver.dir/clean
+clean: CMakeFiles/gemm_compiler.dir/clean
 clean: CMakeFiles/gemm_ref.dir/clean
 
 .PHONY : clean
@@ -75,15 +77,16 @@ clean: CMakeFiles/gemm_ref.dir/clean
 # Target rules for target CMakeFiles/tests.dir
 
 # All Build rule for target.
+CMakeFiles/tests.dir/all: CMakeFiles/gemm_compiler.dir/all
 CMakeFiles/tests.dir/all: CMakeFiles/gemm_ref.dir/all
 	$(MAKE) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/depend
 	$(MAKE) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jolles/Documents/MasterDataScience/HPC/Small_GEMMs/build/CMakeFiles --progress-num=5,6 "Built target tests"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jolles/Documents/MasterDataScience/HPC/Small_GEMMs/build/CMakeFiles --progress-num=7,8 "Built target tests"
 .PHONY : CMakeFiles/tests.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/tests.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jolles/Documents/MasterDataScience/HPC/Small_GEMMs/build/CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jolles/Documents/MasterDataScience/HPC/Small_GEMMs/build/CMakeFiles 6
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/tests.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/jolles/Documents/MasterDataScience/HPC/Small_GEMMs/build/CMakeFiles 0
 .PHONY : CMakeFiles/tests.dir/rule
@@ -102,6 +105,7 @@ CMakeFiles/tests.dir/clean:
 # Target rules for target CMakeFiles/driver.dir
 
 # All Build rule for target.
+CMakeFiles/driver.dir/all: CMakeFiles/gemm_compiler.dir/all
 CMakeFiles/driver.dir/all: CMakeFiles/gemm_ref.dir/all
 	$(MAKE) -f CMakeFiles/driver.dir/build.make CMakeFiles/driver.dir/depend
 	$(MAKE) -f CMakeFiles/driver.dir/build.make CMakeFiles/driver.dir/build
@@ -110,7 +114,7 @@ CMakeFiles/driver.dir/all: CMakeFiles/gemm_ref.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/driver.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jolles/Documents/MasterDataScience/HPC/Small_GEMMs/build/CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jolles/Documents/MasterDataScience/HPC/Small_GEMMs/build/CMakeFiles 6
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/driver.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/jolles/Documents/MasterDataScience/HPC/Small_GEMMs/build/CMakeFiles 0
 .PHONY : CMakeFiles/driver.dir/rule
@@ -126,13 +130,40 @@ CMakeFiles/driver.dir/clean:
 .PHONY : CMakeFiles/driver.dir/clean
 
 #=============================================================================
+# Target rules for target CMakeFiles/gemm_compiler.dir
+
+# All Build rule for target.
+CMakeFiles/gemm_compiler.dir/all:
+	$(MAKE) -f CMakeFiles/gemm_compiler.dir/build.make CMakeFiles/gemm_compiler.dir/depend
+	$(MAKE) -f CMakeFiles/gemm_compiler.dir/build.make CMakeFiles/gemm_compiler.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jolles/Documents/MasterDataScience/HPC/Small_GEMMs/build/CMakeFiles --progress-num=3,4 "Built target gemm_compiler"
+.PHONY : CMakeFiles/gemm_compiler.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/gemm_compiler.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jolles/Documents/MasterDataScience/HPC/Small_GEMMs/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/gemm_compiler.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jolles/Documents/MasterDataScience/HPC/Small_GEMMs/build/CMakeFiles 0
+.PHONY : CMakeFiles/gemm_compiler.dir/rule
+
+# Convenience name for target.
+gemm_compiler: CMakeFiles/gemm_compiler.dir/rule
+
+.PHONY : gemm_compiler
+
+# clean rule for target.
+CMakeFiles/gemm_compiler.dir/clean:
+	$(MAKE) -f CMakeFiles/gemm_compiler.dir/build.make CMakeFiles/gemm_compiler.dir/clean
+.PHONY : CMakeFiles/gemm_compiler.dir/clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/gemm_ref.dir
 
 # All Build rule for target.
 CMakeFiles/gemm_ref.dir/all:
 	$(MAKE) -f CMakeFiles/gemm_ref.dir/build.make CMakeFiles/gemm_ref.dir/depend
 	$(MAKE) -f CMakeFiles/gemm_ref.dir/build.make CMakeFiles/gemm_ref.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jolles/Documents/MasterDataScience/HPC/Small_GEMMs/build/CMakeFiles --progress-num=3,4 "Built target gemm_ref"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jolles/Documents/MasterDataScience/HPC/Small_GEMMs/build/CMakeFiles --progress-num=5,6 "Built target gemm_ref"
 .PHONY : CMakeFiles/gemm_ref.dir/all
 
 # Build rule for subdir invocation for target.

@@ -7,6 +7,8 @@
 #IncludeRegexTransform: 
 
 /home/jolles/Documents/MasterDataScience/HPC/Small_GEMMs/driver.cpp
+gemm_compiler_32_32_32_32_32_32.hpp
+/home/jolles/Documents/MasterDataScience/HPC/Small_GEMMs/gemm_compiler_32_32_32_32_32_32.hpp
 gemm_ref.hpp
 /home/jolles/Documents/MasterDataScience/HPC/Small_GEMMs/gemm_ref.hpp
 chrono
@@ -17,6 +19,8 @@ numeric
 -
 string
 -
+
+/home/jolles/Documents/MasterDataScience/HPC/Small_GEMMs/gemm_compiler_32_32_32_32_32_32.hpp
 
 /home/jolles/Documents/MasterDataScience/HPC/Small_GEMMs/gemm_ref.hpp
 vector

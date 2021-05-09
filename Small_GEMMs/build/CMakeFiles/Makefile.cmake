@@ -43,5 +43,6 @@ set(CMAKE_MAKEFILE_PRODUCTS
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/tests.dir/DependInfo.cmake"
   "CMakeFiles/driver.dir/DependInfo.cmake"
+  "CMakeFiles/gemm_compiler.dir/DependInfo.cmake"
   "CMakeFiles/gemm_ref.dir/DependInfo.cmake"
   )

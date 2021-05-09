@@ -148,6 +148,19 @@ driver/fast:
 .PHONY : driver/fast
 
 #=============================================================================
+# Target rules for targets named gemm_compiler
+
+# Build rule for target.
+gemm_compiler: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 gemm_compiler
+.PHONY : gemm_compiler
+
+# fast build rule for target.
+gemm_compiler/fast:
+	$(MAKE) -f CMakeFiles/gemm_compiler.dir/build.make CMakeFiles/gemm_compiler.dir/build
+.PHONY : gemm_compiler/fast
+
+#=============================================================================
 # Target rules for targets named gemm_ref
 
 # Build rule for target.
@@ -186,6 +199,33 @@ driver.s: driver.cpp.s
 driver.cpp.s:
 	$(MAKE) -f CMakeFiles/driver.dir/build.make CMakeFiles/driver.dir/driver.cpp.s
 .PHONY : driver.cpp.s
+
+gemm_compiler_32_32_32_32_32_32.o: gemm_compiler_32_32_32_32_32_32.cpp.o
+
+.PHONY : gemm_compiler_32_32_32_32_32_32.o
+
+# target to build an object file
+gemm_compiler_32_32_32_32_32_32.cpp.o:
+	$(MAKE) -f CMakeFiles/gemm_compiler.dir/build.make CMakeFiles/gemm_compiler.dir/gemm_compiler_32_32_32_32_32_32.cpp.o
+.PHONY : gemm_compiler_32_32_32_32_32_32.cpp.o
+
+gemm_compiler_32_32_32_32_32_32.i: gemm_compiler_32_32_32_32_32_32.cpp.i
+
+.PHONY : gemm_compiler_32_32_32_32_32_32.i
+
+# target to preprocess a source file
+gemm_compiler_32_32_32_32_32_32.cpp.i:
+	$(MAKE) -f CMakeFiles/gemm_compiler.dir/build.make CMakeFiles/gemm_compiler.dir/gemm_compiler_32_32_32_32_32_32.cpp.i
+.PHONY : gemm_compiler_32_32_32_32_32_32.cpp.i
+
+gemm_compiler_32_32_32_32_32_32.s: gemm_compiler_32_32_32_32_32_32.cpp.s
+
+.PHONY : gemm_compiler_32_32_32_32_32_32.s
+
+# target to generate assembly for a file
+gemm_compiler_32_32_32_32_32_32.cpp.s:
+	$(MAKE) -f CMakeFiles/gemm_compiler.dir/build.make CMakeFiles/gemm_compiler.dir/gemm_compiler_32_32_32_32_32_32.cpp.s
+.PHONY : gemm_compiler_32_32_32_32_32_32.cpp.s
 
 gemm_ref.o: gemm_ref.cpp.o
 
@@ -252,10 +292,14 @@ help:
 	@echo "... test"
 	@echo "... tests"
 	@echo "... driver"
+	@echo "... gemm_compiler"
 	@echo "... gemm_ref"
 	@echo "... driver.o"
 	@echo "... driver.i"
 	@echo "... driver.s"
+	@echo "... gemm_compiler_32_32_32_32_32_32.o"
+	@echo "... gemm_compiler_32_32_32_32_32_32.i"
+	@echo "... gemm_compiler_32_32_32_32_32_32.s"
 	@echo "... gemm_ref.o"
 	@echo "... gemm_ref.i"
 	@echo "... gemm_ref.s"

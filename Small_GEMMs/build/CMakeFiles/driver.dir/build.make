@@ -80,6 +80,7 @@ driver_EXTERNAL_OBJECTS =
 driver: CMakeFiles/driver.dir/driver.cpp.o
 driver: CMakeFiles/driver.dir/build.make
 driver: libgemm_ref.a
+driver: libgemm_compiler.a
 driver: CMakeFiles/driver.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/jolles/Documents/MasterDataScience/HPC/Small_GEMMs/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable driver"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/driver.dir/link.txt --verbose=$(VERBOSE)

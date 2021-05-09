@@ -1,1 +1,1 @@
-/usr/bin/c++     CMakeFiles/tests.dir/tests.cpp.o  -o tests  libgemm_ref.a 
+/usr/bin/c++     CMakeFiles/tests.dir/tests.cpp.o  -o tests  libgemm_ref.a libgemm_compiler.a 
