@@ -16,3 +16,5 @@ enable_testing()
 add_executable(tests tests.cpp)
 target_link_libraries(tests PRIVATE catch gemm_ref)
 add_test(NAME Testicles COMMAND tests)
+
+target_compile_options(driver PRIVATE -O3)
