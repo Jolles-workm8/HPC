@@ -42,5 +42,20 @@ You can find the .csv files and the code in /Pipelines
 
 ##Small GEMM's
 1. You can find the code in the folder Small_GEMMs
-2. The number of required operations to solve the Matrix-Matrix product of A * B, given A is a M * K Matrix and B is a K * N Matrix is : 
-   2 * K * M * N 
+2. The number of required operations to solve the Matrix-Matrix product of A * B, given A is a M * K Matrix and B is a K * N Matrix is :
+   2 * K * M * N
+
+Performance of the gemm kernels with different optimization levels in GFLOP's:
+
+type | without optimization | with O2 | with O3
+--- | --- | --- | ---
+gemm_ref: 4 | 0.308438 | 0.314211 | 0.314826
+gemm_ref: 8 | 0.331801 | 0.335824 | 0.335214
+gemm_ref: 12 | 0.337057 | 0.3367 | 0.337976
+gemm_ref: 16 | 0.341165 | 0.340673 | 0.341988
+gemm_ref: 24 | 0.333424 | 0.331905 | 0.333077
+gemm_ref: 32 | 0.330431 | 0.332958 | 0.333319
+gemm_ref: 48 | 0.327675 | 0.333685 | 0.333967
+gemm_ref: 64 | 0.324477 | 0.333919 | 0.33419
+gemm_compiler_mnk: | 0.371008 | 0.371415 | 0.37179
+gemm_compiler_nkm: | 0.36406 | 0.363802	| 0.363637
