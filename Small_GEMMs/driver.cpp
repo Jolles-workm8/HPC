@@ -51,7 +51,7 @@ int main(int argc, char const *argv[]) {
     std::fill(l_c.begin(), l_c.end(), 0);
 
 
-    unsigned int l_count = 5000;
+    unsigned int l_count = 1500000000/(l_m*l_n*l_k);
 
     using namespace std::chrono;
 
