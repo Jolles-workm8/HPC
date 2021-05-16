@@ -2,6 +2,7 @@
 #include "gemm_ref.hpp"
 #include <chrono>
 #include <iostream>
+#include <libxsmm_source.h>
 #include <numeric>
 #include <string>
 
@@ -28,7 +29,7 @@ int main(int argc, char const *argv[]) {
 
   std::vector<unsigned int> l_lambda = {4, 8, 12, 16, 24, 32, 48, 64};
 
-  //Performance test of gemm_reff with diffrent matrix sizes
+  // Performance test of gemm_reff with diffrent matrix sizes
   for (size_t i = 0; i < l_lambda.size(); i++) {
 
     unsigned int l_m = l_lambda[i];
@@ -50,8 +51,7 @@ int main(int argc, char const *argv[]) {
     std::fill(l_b.begin(), l_b.end(), 1);
     std::fill(l_c.begin(), l_c.end(), 0);
 
-
-    unsigned int l_count = 1500000000/(l_m*l_n*l_k);
+    unsigned int l_count = 1500000000 / (l_m * l_n * l_k);
 
     using namespace std::chrono;
 
@@ -66,7 +66,6 @@ int main(int argc, char const *argv[]) {
 
     double seconds = duration<double>(end - start).count();
 
-
     std::cout << "Lambda:" << l_lambda[i] << '\n';
     std::cout << "Time:" << seconds << '\n';
     std::cout << "GFLOP's: " << measure_GFLOPs(seconds, l_m, l_k, l_n, l_count)
@@ -74,8 +73,7 @@ int main(int argc, char const *argv[]) {
               << '\n';
   }
 
-
-  //comparison gemm_compiler_mnk and gemm_compiler_nkm
+  // comparison gemm_compiler_mnk and gemm_compiler_nkm
   using namespace std::chrono;
   unsigned int l_count = 50000;
 
@@ -88,8 +86,6 @@ int main(int argc, char const *argv[]) {
   std::fill(l_b.begin(), l_b.end(), 1);
   std::fill(l_c.begin(), l_c.end(), 0);
 
-
-
   auto start = system_clock::now();
 
   for (size_t i = 0; i < l_count; i++) {
@@ -99,19 +95,15 @@ int main(int argc, char const *argv[]) {
   auto end = system_clock::now();
   double seconds = duration<double>(end - start).count();
 
-
-  std::cout << "gemm_compiler_mnk: " << measure_GFLOPs(seconds, 32, 32, 32, l_count)
-            << "\t GFLOP's"
+  std::cout << "gemm_compiler_mnk: "
+            << measure_GFLOPs(seconds, 32, 32, 32, l_count) << "\t GFLOP's"
             << '\n'
             << '\n';
-
 
   // to increase use iota
   std::fill(l_a.begin(), l_a.end(), 1);
   std::fill(l_b.begin(), l_b.end(), 1);
   std::fill(l_c.begin(), l_c.end(), 0);
-
-
 
   start = system_clock::now();
 
@@ -122,16 +114,10 @@ int main(int argc, char const *argv[]) {
   end = system_clock::now();
   seconds = duration<double>(end - start).count();
 
-
-  std::cout << "gemm_compiler_nkm: " << measure_GFLOPs(seconds, 32, 32, 32, l_count)
-            << "\t GFLOP's"
+  std::cout << "gemm_compiler_nkm: "
+            << measure_GFLOPs(seconds, 32, 32, 32, l_count) << "\t GFLOP's"
             << '\n'
             << '\n';
-
-
-
-
-
 
   return 0;
 }
