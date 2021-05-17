@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/julius/software/libxsmm/include -I/catch
+CXX_INCLUDES = -I/home/julius/software/libxsmm/include -I/lib64 -I/catch
 
-CXX_FLAGS = 
+CXX_FLAGS =  -pthread -lxsmm -lm -ldl
 

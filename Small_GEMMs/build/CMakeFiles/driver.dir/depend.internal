@@ -5,3 +5,28 @@ CMakeFiles/driver.dir/driver.cpp.o
  /home/julius/HPC/Small_GEMMs/driver.cpp
  /home/julius/HPC/Small_GEMMs/gemm_compiler_32_32_32_32_32_32.hpp
  /home/julius/HPC/Small_GEMMs/gemm_ref.hpp
+ /home/julius/software/libxsmm/include/libxsmm.h
+ /home/julius/software/libxsmm/include/libxsmm_config.h
+ /home/julius/software/libxsmm/include/libxsmm_cpuid.h
+ /home/julius/software/libxsmm/include/libxsmm_dnn.h
+ /home/julius/software/libxsmm/include/libxsmm_dnn_convolution.h
+ /home/julius/software/libxsmm/include/libxsmm_dnn_fullyconnected.h
+ /home/julius/software/libxsmm/include/libxsmm_dnn_fusedbatchnorm.h
+ /home/julius/software/libxsmm/include/libxsmm_dnn_fusedgroupnorm.h
+ /home/julius/software/libxsmm/include/libxsmm_dnn_optimizer.h
+ /home/julius/software/libxsmm/include/libxsmm_dnn_pooling.h
+ /home/julius/software/libxsmm/include/libxsmm_dnn_rnncell.h
+ /home/julius/software/libxsmm/include/libxsmm_dnn_softmaxloss.h
+ /home/julius/software/libxsmm/include/libxsmm_dnn_tensor.h
+ /home/julius/software/libxsmm/include/libxsmm_frontend.h
+ /home/julius/software/libxsmm/include/libxsmm_fsspmdm.h
+ /home/julius/software/libxsmm/include/libxsmm_generator.h
+ /home/julius/software/libxsmm/include/libxsmm_macros.h
+ /home/julius/software/libxsmm/include/libxsmm_malloc.h
+ /home/julius/software/libxsmm/include/libxsmm_math.h
+ /home/julius/software/libxsmm/include/libxsmm_memory.h
+ /home/julius/software/libxsmm/include/libxsmm_rng.h
+ /home/julius/software/libxsmm/include/libxsmm_spmdm.h
+ /home/julius/software/libxsmm/include/libxsmm_timer.h
+ /home/julius/software/libxsmm/include/libxsmm_typedefs.h
+ /home/julius/software/libxsmm/include/libxsmm_version.h

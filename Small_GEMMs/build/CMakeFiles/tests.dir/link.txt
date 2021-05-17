@@ -1,1 +1,1 @@
-/usr/bin/c++ CMakeFiles/tests.dir/tests.cpp.o -o tests   -L/home/julius/software/libxsmm/lib  -Wl,-rpath,/home/julius/software/libxsmm/lib libgemm_ref.a libgemm_compiler.a 
+/usr/bin/c++  -pthread -lxsmm -lm -ldl CMakeFiles/tests.dir/tests.cpp.o -o tests   -L/home/julius/software/libxsmm/lib  -Wl,-rpath,/home/julius/software/libxsmm/lib libgemm_ref.a libgemm_compiler.a 
