@@ -6,7 +6,14 @@
 #include <numeric>
 #include <string>
 
-/*
+
+double measure_GFLOPs(double seconds, unsigned int l_m, unsigned int l_n,
+                      unsigned int l_k, unsigned int l_count) {
+
+  return (double)(2 * l_k * l_m * l_n * l_count) / (seconds * 1000000000);
+}
+
+
 void comparison_dimensions(){  
   // comparison gemm_compiler_mnk and gemm_compiler_nkm
   using namespace std::chrono;
@@ -55,14 +62,7 @@ void comparison_dimensions(){
             << '\n';
 
   }
-  */
-
-double measure_GFLOPs(double seconds, unsigned int l_m, unsigned int l_n,
-                      unsigned int l_k, unsigned int l_count) {
-
-  return (double)(2 * l_k * l_m * l_n * l_count) / (seconds * 1000000000);
-}
-
+  
 int main(int argc, char const *argv[]) {
 
   std::vector<unsigned int> l_lambda = {4, 8, 12, 16, 24, 32, 48, 64};
@@ -113,6 +113,7 @@ int main(int argc, char const *argv[]) {
               << '\n';
   }
 
+  std::cout<< "using the libxsmm kernel:" << '\n';
 
   //Benchmark the Libxsmm library with different matrix sizes
 
@@ -137,7 +138,7 @@ int main(int argc, char const *argv[]) {
     std::fill(l_b.begin(), l_b.end(), 1);
     std::fill(l_c.begin(), l_c.end(), 0);
 
-    unsigned int l_count = 1500000000 / (l_m * l_n * l_k);
+    unsigned int l_count = 15000000000 / (l_m * l_n * l_k);
 
     using namespace std::chrono;
 
@@ -148,7 +149,7 @@ int main(int argc, char const *argv[]) {
     assert(kernel);
     /* kernel multiplies and accumulates matrices: C += Ai * Bi */
     for (size_t i = 0; i < l_count; ++i) {
-      kernel(&l_a[i * l_m * l_k], &l_b[i * l_k * l_n], &l_c[0]);
+    kernel(&l_a[l_m * l_k], &l_b[l_k * l_n], &l_c[0]);
     }
 
     auto end = system_clock::now();
