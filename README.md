@@ -40,22 +40,22 @@ fmla       | 2.5*10^9 * 4 * 2 / 3     | 6.66666 GFlop/s
 
 You can find the .csv files and the code in /Pipelines
 
-##Small GEMM's
+## Small GEMM's
 1. You can find the code in the folder Small_GEMMs
 2. The number of required operations to solve the Matrix-Matrix product of A * B, given A is a M * K Matrix and B is a K * N Matrix is :
    2 * K * M * N
 
 Performance of the gemm kernels with different optimization levels in GFLOP's:
 
-type | without optimization | with O2 | with O3
---- | --- | --- | ---
-gemm_ref: 4 | 0.308438 | 1.52468 | 1.35914
-gemm_ref: 8 | 0.331801 | 1.99553 | 1.87899
-gemm_ref: 12 | 0.337057 | 2.17769 | 2.08614
-gemm_ref: 16 | 0.341165 | 2.20369 | 2.14876
-gemm_ref: 24 | 0.333424 | 2.31289 | 2.26535
-gemm_ref: 32 | 0.330431 | 2.36279 | 2.32706
-gemm_ref: 48 | 0.327675 | 2.41029 | 2.38561
-gemm_ref: 64 | 0.324477 | 2.42677 | 2.4125
-gemm_compiler_mnk: | 0.371008 | 2.66795 | 2.33032
-gemm_compiler_nkm: | 0.36406 | 2.41972	| 11.9447
+type | gemm_ref without optimization | gemm_ref with O2 | gemm_ref with O3 | libxsmm Kernel
+--- | --- | --- | --- | ---
+lambda: 4 | 0.308438 | 1.52468 | 1.35914 | 1.80327
+lambda: 8 | 0.331801 | 1.99553 | 1.87899 | 3.63342
+lambda: 12 | 0.337057 | 2.17769 | 2.08614 | 4.45306
+lambda: 16 | 0.341165 | 2.20369 | 2.14876 | 4.69007
+lambda: 24 | 0.333424 | 2.31289 | 2.26535 | 4.76983
+lambda: 32 | 0.330431 | 2.36279 | 2.32706 | 5.02721
+lambda: 48 | 0.327675 | 2.41029 | 2.38561 | 5.2072
+lambda: 64 | 0.324477 | 2.42677 | 2.4125 | 5.31401
+gemm_compiler_mnk: | 0.371008 | 2.66795 | 2.33032 | -
+gemm_compiler_nkm: | 0.36406 | 2.41972	| 11.9447 | - 
