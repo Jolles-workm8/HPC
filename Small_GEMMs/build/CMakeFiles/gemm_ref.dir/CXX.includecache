@@ -6,11 +6,3 @@
 
 #IncludeRegexTransform: 
 
-/home/jolles/Documents/MasterDataScience/HPC/Small_GEMMs/gemm_ref.cpp
-gemm_ref.hpp
-/home/jolles/Documents/MasterDataScience/HPC/Small_GEMMs/gemm_ref.hpp
-
-/home/jolles/Documents/MasterDataScience/HPC/Small_GEMMs/gemm_ref.hpp
-vector
--
-

@@ -1,1 +1,1 @@
-/usr/bin/c++     CMakeFiles/driver.dir/driver.cpp.o  -o driver  libgemm_ref.a libgemm_compiler.a 
+/usr/bin/c++ CMakeFiles/driver.dir/driver.cpp.o -o driver   -L/home/julius/software/libxsmm/lib  -Wl,-rpath,/home/julius/software/libxsmm/lib libgemm_ref.a libgemm_compiler.a -lxsmm 

@@ -2,7 +2,7 @@
 #include "gemm_ref.hpp"
 #include <chrono>
 #include <iostream>
-#include <libxsmm_source.h>
+#include <libxsmm.h>
 #include <numeric>
 #include <string>
 
