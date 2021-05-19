@@ -10,7 +10,7 @@
 double measure_GFLOPs(double seconds, unsigned int l_m, unsigned int l_n,
                       unsigned int l_k, unsigned int l_count) {
 
-  return (double)(2 * l_k * l_m * l_n * l_count) / (seconds * 1000000000);
+  return (double)(2 * l_k * l_m * l_n * (double)l_count) / (seconds * 1000000000);
 }
 
 
@@ -142,14 +142,19 @@ int main(int argc, char const *argv[]) {
 
     using namespace std::chrono;
 
-    auto start = system_clock::now();
 
     libxsmm_mmfunction<float, float> kernel(LIBXSMM_GEMM_FLAG_NONE, l_m, l_n, l_k, 1.0, 1.0);
 
     assert(kernel);
+
+    auto start = system_clock::now();
+
     /* kernel multiplies and accumulates matrices: C += Ai * Bi */
     for (size_t i = 0; i < l_count; ++i) {
-    kernel(&l_a[l_m * l_k], &l_b[l_k * l_n], &l_c[0]);
+    
+    //kernel(&l_a[l_m * l_k], &l_b[l_k * l_n], &l_c[0]);
+    kernel(l_a.data(), l_b.data(), l_c.data());
+
     }
 
     auto end = system_clock::now();
