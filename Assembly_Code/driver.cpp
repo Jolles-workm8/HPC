@@ -31,6 +31,8 @@ for(int i = 0; i<7; i++){
         std::cout << l_a[i] << "/" << l_b[i] << std::endl;
 }
 
+  delete(l_a);
+  delete(l_b);
 
 
   return EXIT_SUCCESS;
