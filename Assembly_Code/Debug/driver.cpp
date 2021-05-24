@@ -12,10 +12,10 @@ int main() {
   }
 
   // ok
-  load_asm( l_a+2 );
+  //load_asm( l_a+2 );
 
   // not ok #1
-  // load_asm( l_a+12 );
+  load_asm( l_a+12 );
 
   // not ok #2
   // load_asm( l_a+8 );
