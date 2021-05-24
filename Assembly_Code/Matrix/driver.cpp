@@ -23,6 +23,13 @@ int main() {
 
   }
 
+  //test for correctness
+  if(l_c[0] == 59 && l_c[1] == 78 && l_c[2] == 97 && l_c[3] == 116 && l_c[4] == 71 && l_c[5] == 94 && l_c[6] == 117 && l_c[7] == 140){
+  std::cout << "test successfull" << std::endl;
+  }
+  else{
+  std::cout << "test error" << std::endl;
+  }
 
   return EXIT_SUCCESS;
 }
