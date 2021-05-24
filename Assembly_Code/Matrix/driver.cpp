@@ -2,6 +2,12 @@
 #include <cstdint>
 #include <cstdlib>
 
+extern "C" {
+  void gemm_asm_gp( uint32_t const * i_a,
+                  uint32_t const * i_b,
+                  uint32_t       * io_c );;
+}
+
 int main() {
 
 uint32_t * l_a = new uint32_t[8];
