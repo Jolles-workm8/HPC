@@ -1,119 +1,113 @@
-        .text
-        .type gemm_asm_gp, %function
-        .global gemm_asm_gp
-        /*
-         * Performs the matrix-multiplication C+=A*B
-         * with the shapes (4x2) = (4x2) * (2x2).
-         * The input-data is of type uint32_t.
-         *
-         * @param x0 pointer to A.
-         * @param x1 pointer to B.
-         * @param x2 pointer to C.
-         */ 
+	.text
+      .type gemm_asm_gp, %function
+      .global gemm_asm_gp
+      /*
+       * Performs the matrix-multiplication C+=A*B
+       * with the shapes (4x2) = (4x2) * (2x2).
+       * The input-data is of type uint32_t.
+       *
+       * @param x0 pointer to A.
+       * @param x1 pointer to B.
+       * @param x2 pointer to C.
+       */
 gemm_asm_gp:
-        // store
-        stp x19, x20, [sp, #-16]!
-        stp x21, x22, [sp, #-16]!
-        stp x23, x24, [sp, #-16]!
-        stp x25, x26, [sp, #-16]!
-        stp x27, x28, [sp, #-16]!
-        stp x29, x30, [sp, #-16]!
+      // store
+      stp x19, x20, [sp, #-16]!
+      stp x21, x22, [sp, #-16]!
+      stp x23, x24, [sp, #-16]!
+      stp x25, x26, [sp, #-16]!
+      stp x27, x28, [sp, #-16]!
+      stp x29, x30, [sp, #-16]!
 
-        //calculating c11
-        ldr w0, [x0]
-        ldr w1, [x0, #4]
-
-        ldr w2, [x1]
-        ldr w3, [x1, #8]
-
-        ldr w4, [x2]
-
-        madd w4, w0, w3, w4
-        madd w4, w1, w3, w4
-
-        str w4, [x2]
-
-        //calculating c12
-        ldr w0, [x0]
-        ldr w1, [x0, #4]
-
-        ldr w2, [x1, #4]
-        ldr w3, [x1, #12]
-
-        ldr w4, [x2, #4]
-
-        madd w4, w0, w3, w4
-        madd w4, w1, w3, w4
-
-        str w4, [x2, #4]
+      //matrix-kernel!
 
 
-        //calculating c21
-        ldr w0, [x0, #8]
-        ldr w1, [x0, #12]
+      //load first row of c
+      ldp w4, w5, [x2]
+      ldp w6, w7, [x2, #8]
 
-        ldr w2, [x1]
-        ldr w3, [x1, #8]
+      //load first row of a
+      ldp w8, w9, [x0]
+      ldp w10, w11, [x0, #8]
 
-        ldr w4, [x2, #8]
+      //load first value of b
+      ldr w12,    [x1]
 
-        madd w4, w0, w3, w4
-        madd w4, w1, w3, w4
-
-        str w4, [x2, #8]
-
-
-        //calculating c22
-        ldr w0, [x0, #8]
-        ldr w1, [x0, #12]
-
-        ldr w2, [x1, #4]
-        ldr w3, [x1, #12]
-
-        ldr w4, [x2, #12]
-
-        madd w4, w0, w3, w4
-        madd w4, w1, w3, w4
-
-        str w4, [x2, #12]
+      //multiply and add
+      madd w4, w8, w12, w4
+      madd w5, w9, w12, w5
+      madd w6, w10, w12, w6
+      madd w7, w11, w12, w7
 
 
-        //calculating c31
-        ldr w0, [x0, #16]
-        ldr w1, [x0, #20]
 
-        ldr w2, [x1]
-        ldr w3, [x1, #8]
+      //load second row of a
+      ldp w8, w9, [x0, #16]
+      ldp w10, w11, [x0, #24]
 
-        ldr w4, [x2, #16]
+      //load second value of b
+      ldr w12,    [x1, #4]
 
-        madd w4, w0, w3, w4
-        madd w4, w1, w3, w4
+      //multiply and add
+      madd w4, w8, w12, w4
+      madd w5, w9, w12, w5
+      madd w6, w10, w12, w6
+      madd w7, w11, w12, w7
 
-        ldr w4, [x2, #16]
 
-        //calculating c32
-        ldr w0, [x0, #16]
-        ldr w1, [x0, #20]
+      //store first row of c
+      stp w4, w5, [x2]
+      stp w6, w7, [x2, #8]
 
-        ldr w2, [x1, #4]
-        ldr w3, [x1, #12]
 
-        ldr w4, [x2, #20]
+      //load second row of c
+      ldp w4, w5, [x2, #16]
+      ldp w6, w7, [x2, #24]
 
-        madd w4, w0, w3, w4
-        madd w4, w1, w3, w4
+      //load first row of a
+      ldp w8, w9, [x0]
+      ldp w10, w11, [x0, #8]
 
-        ldr w4, [x2, #20]
+      //load third value of b
+      ldr w12,    [x1, #8]
 
-        
-        // restore
-        ldp x29, x30, [sp], #16
-        ldp x27, x28, [sp], #16
-        ldp x25, x26, [sp], #16
-        ldp x23, x24, [sp], #16
-        ldp x21, x22, [sp], #16
-        ldp x19, x20, [sp], #16
+      //multiply and add
+      madd w4, w8, w12, w4
+      madd w5, w9, w12, w5
+      madd w6, w10, w12, w6
+      madd w7, w11, w12, w7
 
-        ret
-        .size gemm_asm_gp, (. - gemm_asm_gp)
+
+
+      //load second row of a
+      ldp w8, w9, [x0, #16]
+      ldp w10, w11, [x0, #24]
+
+      //load fourth value of b
+      ldr w12,    [x1, #12]
+
+      //multiply and add
+      madd w4, w8, w12, w4
+      madd w5, w9, w12, w5
+      madd w6, w10, w12, w6
+      madd w7, w11, w12, w7
+
+
+      //store second row of c
+      stp w4, w5, [x2, #16]
+      stp w6, w7, [x2, #24]
+
+
+
+
+
+      // restore
+      ldp x29, x30, [sp], #16
+      ldp x27, x28, [sp], #16
+      ldp x25, x26, [sp], #16
+      ldp x23, x24, [sp], #16
+      ldp x21, x22, [sp], #16
+      ldp x19, x20, [sp], #16
+
+      ret
+      .size gemm_asm_gp, (. - gemm_asm_gp)
