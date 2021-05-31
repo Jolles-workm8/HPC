@@ -38,11 +38,13 @@ int main(){
 
     gemm_asm_asimd_16_4_4(l_a, l_b, l_c);
 
-    for(size_t i=0; i<64; i++){
-        if(i%4 ==0 ){
-            std::cout << "\n" << " | ";
-        }
-        std::cout<< l_c[i] << " | ";       
+    for(size_t i=0; i<16; i++){
+	std::cout << " | ";
+	for(size_t j=0; j<4; j++){
+	    std::cout<< l_c[j*16+i] << " | ";
+	}
+        std::cout << "\n";
+ 
     }
     std::cout<< std::endl << std::endl;
 
