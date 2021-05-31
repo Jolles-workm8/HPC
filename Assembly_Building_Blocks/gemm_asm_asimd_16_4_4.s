@@ -26,19 +26,19 @@ gemm_asm_asimd_16_4_4:
 
 
         //load matrix C
-				ld1 { v0.4s, v1.4s, v2.4s, v3.4s}, [x2]
-				add x2, x2, #16*4
-				ld1 { v4.4s, v5.4s, v6.4s, v7.4s}, [x2]
-				add x2, x2, #16*4
-				ld1 { v8.4s, v9.4s, v10.4s, v11.4s}, [x2]
-				add x2, x2, #16*4
-				ld1 { v12.4s, v13.4s, v14.4s, v15.4s}, [x2]
+		ld1 { v0.4s, v1.4s, v2.4s, v3.4s}, [x2]
+		add x2, x2, #16*4
+		ld1 { v4.4s, v5.4s, v6.4s, v7.4s}, [x2]
+		add x2, x2, #16*4
+		ld1 { v8.4s, v9.4s, v10.4s, v11.4s}, [x2]
+		add x2, x2, #16*4
+		ld1 { v12.4s, v13.4s, v14.4s, v15.4s}, [x2]
 
-				//load matrix B
-				ld1 { v16.4s, v17.4s, v18.4s, v19.4s}, [x1]
+		//load matrix B
+		ld1 { v16.4s, v17.4s, v18.4s, v19.4s}, [x1]
 
-				//load one first of A
-				ld1 { v20.4s, v21.4s, v22.4s, v23.4s}, [x0]
+		//load one first of A
+		ld1 { v20.4s, v21.4s, v22.4s, v23.4s}, [x0]
 
 				//calculate with first row of A
 				fmla v0.4s, v20.4s, v16.s[0]
