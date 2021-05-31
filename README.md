@@ -59,3 +59,74 @@ lambda: 48 | 0.327675 | 2.41029 | 2.38561 | 5.2072
 lambda: 64 | 0.324477 | 2.42677 | 2.4125 | 5.31401
 gemm_compiler_mnk: | 0.371008 | 2.66795 | 2.33032 | -
 gemm_compiler_nkm: | 0.36406 | 2.41972	| 11.9447 | - 
+
+
+## Assembly on AArch64
+
+1. Find the our approach in to the first exercise in ./Assembly_code/Hello
+
+2. 
+..1. The contents on the registers are:
+..* X1:400
+..* X2:400
+..* X3:500
+..* X4:600
+..* X5:700
+
+..2. 
+..* not ok #1 :
+    ==1174859== Invalid read of size 8
+    ==1174859== at 0x40074C: main (driver.cpp:18)
+    ==1174859== Address 0x4d03ce8 is 24 bytes after a block of size 80 in arena "client"
+
+    The call a+12 is out of bounds because we allocated l_a just for 10 64-bit unsigned integers.
+
+    ==1174859== Invalid read of size 8
+    ==1174859== at 0x400774: load_asm (load.s:7)
+    ==1174859== Address 0x4d03ce8 is 24 bytes after a block of size 80 in arena "client"
+
+    The problem is the same: we can't load from the adress since it has no data. Notice that the error valgrind gives us is the same in driver.cpp and load.s.
+
+    ==1175464== Invalid read of size 8
+    ==1175464== at 0x400778: load_asm (load.s:8)
+    ==1175464== Address 0x4d03cf8 is 24 bytes before an unallocated block of size 4,121,296 in arena "client"
+
+    The Adress following the one above, since we load a pair of values, has no allocated value to it at all and is "hanging freely" in our main memory. This explains the 'before an unallocated block of size 4,121,296' bytes.
+
+
+..* not ok #2:
+
+    ==1175970== Invalid read of size 8
+    ==1175970== at 0x400774: load_asm (load.s:7)
+    ==1175970== Address 0x4d03cd0 is 0 bytes after a block of size 80 alloc'd
+    ==1175970== at 0x4867DD8: operator new[](unsigned long) (vg_replace_malloc.c:431)
+    ==1175970== by 0x4006F7: main (driver.cpp:9)    
+
+    X0 is the 9th allocated memory register of our array. Increasing it by one with the advance operator ! X0 has the value of l_a[10]. In the following loadpair command the first valu can be loaded (as the last value of l_a) and the folloing value for X3 is missing. This explains the error message "0 bytes after allocated block' sine we are looking at the next 64 bit after the array l_a.
+
+
+    ==1175970== Invalid read of size 8
+    ==1175970== at 0x400778: load_asm (load.s:8)
+    ==1175970== Address 0x4d03cd8 is 8 bytes after a block of size 80 alloc'd
+    ==1175970== at 0x4867DD8: operator new[](unsigned long) (vg_replace_malloc.c:431)
+    ==1175970== by 0x4006F7: main (driver.cpp:9)
+
+    Now we do a load pair but we advance X0 by 16. Knowing that X0 is representing the 9th entry of l_a this means we look at the virtual 11th entry of l_a with doesn't exist. This explains the error message that we are 8 byte (=64bit) behind the last allocated block. This makes sense since l_a has only 10 netries.
+
+
+
+
+..* not ok #3:
+
+    ==1176053== Invalid read of size 8
+    ==1176053== at 0x400778: load_asm (load.s:8)
+    ==1176053== Address 0x4d03cd0 is 0 bytes after a block of size 80 alloc'd
+    ==1176053== at 0x4867DD8: operator new[](unsigned long) (vg_replace_malloc.c:431)
+    ==1176053== by 0x4006F7: main (driver.cpp:9)
+
+    Very similiar to the one before. Now X0 starts as the 7th entry of l_a. Increasing it by 8 byte in l:6 makes it 8th entry. Loading from this adrees advancing by 16 Byte makes it the 11th entry of l_a which doesnt exist. This explains the error message 0 byte behinf allocated block.
+   
+
+3.
+
+4.

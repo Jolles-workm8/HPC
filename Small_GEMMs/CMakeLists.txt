@@ -4,7 +4,8 @@ project(gemm LANGUAGES CXX)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread -lxsmm -lm -ldl")
 
-
+SET(GCC_COVERAGE_COMPILE_FLAGS "-pthread -lxsmm -lm -ldl")
+SET(GCC_COVERAGE_LINK_FLAGS    "-lgcov")
 
 
 include_directories(/home/julius/software/libxsmm/include)
