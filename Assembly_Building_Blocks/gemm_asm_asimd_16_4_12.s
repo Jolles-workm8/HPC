@@ -12,6 +12,7 @@
          */
 gemm_asm_asimd_16_4_4:
         // store
+
         stp x19, x20, [sp, #-16]!
         stp x21, x22, [sp, #-16]!
         stp x23, x24, [sp, #-16]!
@@ -34,8 +35,16 @@ gemm_asm_asimd_16_4_4:
 				add x2, x2, #16*4
 				ld1 { v12.4s, v13.4s, v14.4s, v15.4s}, [x2]
 
+        //prepare loop
+        mov x3, #12
+        mov x4, #12
+loop:
 				//load matrix B
-				ld1 { v16.4s, v17.4s, v18.4s, v19.4s}, [x1]
+        ld1 v16.4s, [x1]
+        ld1 v17.4s, [x1], #12*4
+        ld1 v18.4s, [x1], #24*4
+        ld1 v19.4s, [x1], #36*4
+
 
 				//load one first of A
 				ld1 { v20.4s, v21.4s, v22.4s, v23.4s}, [x0]
@@ -136,7 +145,10 @@ gemm_asm_asimd_16_4_4:
 				fmla v14.4s, v22.4s, v19.s[3]
 				fmla v15.4s, v23.4s, v19.s[3]
 
-
+        //Loop Condition
+        add x1, x1, #4*4
+        sub x3, x3, #4
+        cbnz x3, loop
 
 				//store matrix
 				sub x2, x2, #16*4*3
