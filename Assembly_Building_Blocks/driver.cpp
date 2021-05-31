@@ -80,27 +80,31 @@ int main(){
     delete[] l_c;
 
     //test 16 4 12
-    float * l_a = new float[192];
-    float * l_b = new float[48];
-    float * l_c = new float[192];
+    l_a = new float[192];
+    l_b = new float[48];
+    l_c = new float[64];
 
-    unsigned int l_count = 10000000;
+    l_count = 100000000;
 
     //init the matrices
-    for(size_t i=0; i<64; i++){
+    for(size_t i=0; i<192; i++){
         l_a[i]=i;
+    }
+
+    for(size_t i=0; i<48; i++){
+        l_b[i]= i;
+    }
+
+    for(size_t i=0; i<192; i++){
         l_c[i]=1;
     }
 
-    for(size_t i=0; i<16; i++){
-        l_b[i]= i;
-    }
 
     gemm_asm_asimd_16_4_12(l_a, l_b, l_c);
 
     for(size_t i=0; i<16; i++){
 	std::cout << " | ";
-	for(size_t j=0; j<12; j++){
+	for(size_t j=0; j<4; j++){
 	    std::cout<< l_c[j*16+i] << " | ";
 	}
         std::cout << "\n";
@@ -108,21 +112,18 @@ int main(){
     }
     std::cout<< std::endl << std::endl;
 
-
-    using namespace std::chrono;
-
-    auto start = system_clock::now();
+    start = system_clock::now();
     //execute the kernel l_count times
     for(size_t i =0; i< l_count; i++){
         gemm_asm_asimd_16_4_4(l_a, l_b, l_c);
     }
 
-    auto end = system_clock::now();
+    end = system_clock::now();
 
 
-    double seconds = duration<double>(end - start).count();
+    seconds = duration<double>(end - start).count();
 
-    double gflops = measure_GFLOPs(seconds, 16, 4, 4, l_count);
+    gflops = measure_GFLOPs(seconds, 16, 4, 4, l_count);
 
     std::cout << "Time: " << seconds << '\n'
         << "Executions: " << l_count << '\n'

@@ -1,6 +1,6 @@
 .text
-        .type gemm_asm_asimd_16_4_4, %function
-        .global gemm_asm_asimd_16_4_4
+        .type gemm_asm_asimd_16_4_12, %function
+        .global gemm_asm_asimd_16_4_12
         /*
          * Performs the matrix-multiplication C+=A*B
          * with the shapes (16x4) = (16x5) * (4x4).
@@ -10,7 +10,7 @@
          * @param x1 pointer to B.
          * @param x2 pointer to C.
          */
-gemm_asm_asimd_16_4_4:
+gemm_asm_asimd_16_4_12:
         // store
 
         stp x19, x20, [sp, #-16]!
@@ -37,13 +37,16 @@ gemm_asm_asimd_16_4_4:
 
         //prepare loop
         mov x3, #12
-        mov x4, #12
 loop:
 				//load matrix B
-        ld1 v16.4s, [x1]
-        ld1 v17.4s, [x1], #12*4
-        ld1 v18.4s, [x1], #24*4
-        ld1 v19.4s, [x1], #36*4
+	mov x4, x1
+        ld1 {v16.4s}, [x4]
+	add x4, x4, #12*4
+        ld1 {v17.4s}, [x4]
+        add x4, x4, #12*4
+	ld1 {v18.4s}, [x4]
+        add x4, x4, #12*4
+	ld1 {v19.4s}, [x4]
 
 
 				//load one first of A
@@ -174,4 +177,4 @@ loop:
         ldp x19, x20, [sp], #16
 
         ret
-        .size gemm_asm_asimd_16_4_4, (. - gemm_asm_asimd_16_4_4)
+        .size gemm_asm_asimd_16_4_12, (. - gemm_asm_asimd_16_4_12)
