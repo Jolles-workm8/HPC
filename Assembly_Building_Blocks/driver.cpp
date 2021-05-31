@@ -28,19 +28,25 @@ int main(){
 
     //init the matrices
     for(size_t i=0; i<64; i++){
-        l_a[i]=(float)i;
-        l_c[i]=0.0f;
+        l_a[i]=i;
+        l_c[i]=1;
     }
 
     for(size_t i=0; i<16; i++){
-        if(i == 0 || i == 5 || i == 10 || i ==15){
-            l_b[i]=1.0f;
-            }
-        else{
-            l_b[i]=0.0f;
-        }
+        l_b[i]= i;
     }
-    
+
+    gemm_asm_asimd_16_4_4(l_a, l_b, l_c);
+
+    for(size_t i=0; i<64; i++){
+        if(i%4 ==0 ){
+            std::cout << "\n" << " | ";
+        }
+        std::cout<< l_c[i] << " | ";       
+    }
+    std::cout<< std::endl << std::endl;
+
+
     using namespace std::chrono;
 
     auto start = system_clock::now();
@@ -48,7 +54,7 @@ int main(){
     for(size_t i =0; i< l_count; i++){
         gemm_asm_asimd_16_4_4(l_a, l_b, l_c);
     }
-    
+
     auto end = system_clock::now();
 
 
@@ -60,16 +66,8 @@ int main(){
         << "Executions: " << l_count << '\n'
         << "GFLOPs: " << gflops << '\n'
         << "Peak %: " << gflops/40.0 << '\n';
-    
-    std::cout << "unsigned float limits: " << std::numeric_limits<float>::max() << '\n';
 
-    for(size_t i=0; i<64; i++){
-        if(i%4 ==0 ){
-            std::cout << "\n" << " | ";
-        }
-        std::cout<< l_c[i] << " | ";       
-    }
-    std::cout<< std::endl << std::endl;
+
 
     delete[] l_a;
     delete[] l_b;
