@@ -148,8 +148,10 @@ loop:
 		fmla v14.4s, v22.4s, v19.s[3]
 		fmla v15.4s, v23.4s, v19.s[3]
 
+	add x0, x0, #16*4
+
         //Loop Condition
-        add x1, x1, #4*3
+        add x1, x1, #4*4
         sub x3, x3, #4
         cbnz x3, loop
 

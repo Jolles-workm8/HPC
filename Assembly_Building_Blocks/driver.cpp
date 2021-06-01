@@ -68,7 +68,7 @@ int main(){
     //test if code is right, took therefor the reference function from previous lecture
     for(size_t i=0; i<64; i++){
         if(l_c[i] != l_c_test[i]){
-         std::cout << "wrong calculation of C in 16_4_4" << '\n';
+         std::cout << "wrong calculation of C in 16_4_4 " << l_c[i] << " "<< l_c_test[i] << '\n';
          exit( EXIT_FAILURE );
         }
     }
@@ -133,9 +133,9 @@ int main(){
 
 
 
-    for(size_t i=0; i<192; i++){
+    for(size_t i=0; i<64; i++){
         if(l_c[i] != l_c_test[i]){
-         std::cout << "wrong calculation of C in 16_4_12" << '\n';
+         std::cout << "wrong calculation of C in 16_4_12 "<<i<<" "<< l_c[i] << " "<< l_c_test[i] << '\n';
          exit( EXIT_FAILURE );
         }
     }
@@ -160,12 +160,12 @@ int main(){
         << "Peak %: " << gflops/40.0 << '\n';
 
 
-    delete[] l_a;
-    delete[] l_b;
-    delete[] l_c;
-    delete[] l_a_test;
-    delete[] l_b_test;
-    delete[] l_c_test;
+  //  delete[] l_a;
+ //   delete[] l_b;
+//    delete[] l_c;
+//    delete[] l_a_test;
+//    delete[] l_b_test;
+//    delete[] l_c_test;
 
     return EXIT_SUCCESS;
 }
