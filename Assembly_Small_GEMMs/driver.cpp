@@ -130,25 +130,17 @@ std::cout << "initializing new arrays" << '\n';
         l_b_test[i] = (float)i;
     }
 
-std::cout << "starting calculation" << '\n';
-
     gemm_asm_asimd_32_32_32(l_a, l_b, l_c);
-
-std::cout << "calculate reference" << '\n';
-
-    gemm_ref(l_a_test, l_b_test, l_c_test, 16, 4, 12, 16, 12, 16);
-
-std::cout << "testing correctness" << '\n';
-
+    gemm_ref(l_a_test, l_b_test, l_c_test, 32, 32, 32, 32, 32, 32);
 
     for(size_t i=0; i<1024; i++){
         if(l_c[i] != l_c_test[i]){
          std::cout << "wrong calculation of C in 16_4_12 "<<i<<" "<< l_c[i] << " "<< l_c_test[i] << '\n';
-         exit( EXIT_FAILURE );
+	 exit( EXIT_FAILURE );
         }
     }
 
-    l_count = 10000;
+    l_count = 1000000;
     start = system_clock::now();
     //execute the kernel l_count times
     for(size_t i =0; i< l_count; i++){

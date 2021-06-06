@@ -165,6 +165,8 @@ loop_k:
     //Loop k condition
     sub x3, x3, #4
     cbnz x3, loop_k
+    sub x1, x1, #32*4
+
 
     //store matrix
     st1 { v0.4s, v1.4s, v2.4s, v3.4s}, [x2]
@@ -177,17 +179,18 @@ loop_k:
     //set pointer back to before
     sub x2, x2, #32*4*3
 
+test:
     //Loop m condition
     add x2, x2, #16*4
     sub x0, x0, #32*32*4-16*4
     sub x4, x4, #16
     cbnz x4, loop_m
 
-    sub x2, x2, #32*4
-
+test2:
     //Loop n condition
-    add x2, x2, #32*4*4
-    add x1, x1, #32*4*3
+    sub x0, x0, #32*4
+    add x2, x2, #32*4*3
+    add x1, x1, #32*4*4
     sub x5, x5, #4
     cbnz x5, loop_n
     sub x2, x2, #32*32*4
