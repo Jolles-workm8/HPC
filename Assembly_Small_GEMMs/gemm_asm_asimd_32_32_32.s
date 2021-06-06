@@ -1,6 +1,6 @@
 .text
-        .type gemm_asm_asimd_16_4_12, %function
-        .global gemm_asm_asimd_16_4_12
+        .type gemm_asm_asimd_32_32_32, %function
+        .global gemm_asm_asimd_32_32_32
         /*
          * Performs the matrix-multiplication C+=A*B
          * with the shapes (16x4) = (16x5) * (4x4).
@@ -10,7 +10,7 @@
          * @param x1 pointer to B.
          * @param x2 pointer to C.
          */
-gemm_asm_asimd_16_4_12:
+gemm_asm_asimd_32_32_32:
         // store
 
         stp x19, x20, [sp, #-16]!
@@ -42,22 +42,22 @@ loop_m:
 		add x2, x2, #32*4
 		ld1 { v12.4s, v13.4s, v14.4s, v15.4s}, [x2]
 
-    sub x2,x2, #32*3*4-16*4
+    sub x2,x2, #32*3*4
 
     //prepare loop_k
     mov x3, #32
 loop_k:
 		//load matrix B
-    ld1 {v16.4s}, [x4]
+    ld1 {v16.4s}, [x1]
 		add x1, x1, #32*4
 
-    ld1 {v17.4s}, [x4]
+    ld1 {v17.4s}, [x1]
     add x1, x1, #32*4
 
-		ld1 {v18.4s}, [x4]
+		ld1 {v18.4s}, [x1]
     add x1, x1, #32*4
 
-		ld1 {v19.4s}, [x4]
+		ld1 {v19.4s}, [x1]
     sub x1, x1, 32*4*3- 4*4
 
 
@@ -166,28 +166,32 @@ loop_k:
     sub x3, x3, #4
     cbnz x3, loop_k
 
+    //store matrix
+    st1 { v0.4s, v1.4s, v2.4s, v3.4s}, [x2]
+    add x2, x2, #32*4
+    st1 { v4.4s, v5.4s, v6.4s, v7.4s}, [x2]
+    add x2, x2, #32*4
+    st1 { v8.4s, v9.4s, v10.4s, v11.4s}, [x2]
+    add x2, x2, #32*4
+    st1 { v12.4s, v13.4s, v14.4s, v15.4s}, [x2]
+    //set pointer back to before
+    sub x2, x2, #32*4*3
+
     //Loop m condition
+    add x2, x2, #16*4
     sub x0, x0, #32*32*4-16*4
     sub x4, x4, #16
     cbnz x4, loop_m
 
+    sub x2, x2, #32*4
+
     //Loop n condition
-    // position of x2 is 32 bits after start
-    add x2, x2, #32*3
-    add x1, x1, #32*3
+    add x2, x2, #32*4*4
+    add x1, x1, #32*4*3
     sub x5, x5, #4
     cbnz x5, loop_n
+    sub x2, x2, #32*32*4
 
-
-		//store matrix
-		sub x2, x2, #16*4*3
-		st1 { v0.4s, v1.4s, v2.4s, v3.4s}, [x2]
-		add x2, x2, #16*4
-		st1 { v4.4s, v5.4s, v6.4s, v7.4s}, [x2]
-		add x2, x2, #16*4
-		st1 { v8.4s, v9.4s, v10.4s, v11.4s}, [x2]
-		add x2, x2, #16*4
-		st1 { v12.4s, v13.4s, v14.4s, v15.4s}, [x2]
 
         // restore
         ldp d14, d15, [sp], #16
@@ -203,4 +207,4 @@ loop_k:
         ldp x19, x20, [sp], #16
 
         ret
-        .size gemm_asm_asimd_16_4_12, (. - gemm_asm_asimd_16_4_12)
+        .size gemm_asm_asimd_32_32_32, (. - gemm_asm_asimd_32_32_32)

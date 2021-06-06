@@ -94,7 +94,7 @@ int main(){
         << "Peak %: " << gflops/40.0 << '\n';
 
 
-
+/*
     delete[] l_a;
     delete[] l_b;
     delete[] l_c;
@@ -102,6 +102,9 @@ int main(){
     delete[] l_a_test;
     delete[] l_b_test;
     delete[] l_c_test;
+*/
+
+std::cout << "creating new arrays" << '\n';
 
     l_a = new float[1024];
     l_b = new float[1024];
@@ -111,6 +114,7 @@ int main(){
     l_b_test = new float[1024];
     l_c_test = new float[1024];
 
+std::cout << "initializing new arrays" << '\n';
 
     //init the matrices
     for(size_t i=0; i<1024; i++){
@@ -126,11 +130,15 @@ int main(){
         l_b_test[i] = (float)i;
     }
 
+std::cout << "starting calculation" << '\n';
 
     gemm_asm_asimd_32_32_32(l_a, l_b, l_c);
 
+std::cout << "calculate reference" << '\n';
+
     gemm_ref(l_a_test, l_b_test, l_c_test, 16, 4, 12, 16, 12, 16);
 
+std::cout << "testing correctness" << '\n';
 
 
     for(size_t i=0; i<1024; i++){
@@ -140,7 +148,7 @@ int main(){
         }
     }
 
-    l_count = 10000
+    l_count = 10000;
     start = system_clock::now();
     //execute the kernel l_count times
     for(size_t i =0; i< l_count; i++){
