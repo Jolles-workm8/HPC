@@ -47,118 +47,118 @@ loop_m:
     //prepare loop_k
     mov x3, #32
 loop_k:
-		//load matrix B
+	//load matrix B
     ld1 {v16.4s}, [x1]
-		add x1, x1, #32*4
+	add x1, x1, #32*4
 
     ld1 {v17.4s}, [x1]
     add x1, x1, #32*4
 
-		ld1 {v18.4s}, [x1]
+	ld1 {v18.4s}, [x1]
     add x1, x1, #32*4
 
-		ld1 {v19.4s}, [x1]
+	ld1 {v19.4s}, [x1]
     sub x1, x1, 32*4*3- 4*4
 
 
-		//load first row of A
-		ld1 { v20.4s, v21.4s, v22.4s, v23.4s}, [x0]
+	//load first row of A
+	ld1 { v20.4s, v21.4s, v22.4s, v23.4s}, [x0]
 
-		//calculate with first row of A
-		fmla v0.4s, v20.4s, v16.s[0]
-		fmla v1.4s, v21.4s, v16.s[0]
-		fmla v2.4s, v22.4s, v16.s[0]
-		fmla v3.4s, v23.4s, v16.s[0]
+	//calculate with first row of A
+	fmla v0.4s, v20.4s, v16.s[0]
+	fmla v1.4s, v21.4s, v16.s[0]
+	fmla v2.4s, v22.4s, v16.s[0]
+	fmla v3.4s, v23.4s, v16.s[0]
 
-		fmla v4.4s, v20.4s, v17.s[0]
-		fmla v5.4s, v21.4s, v17.s[0]
-		fmla v6.4s, v22.4s, v17.s[0]
-		fmla v7.4s, v23.4s, v17.s[0]
+	fmla v4.4s, v20.4s, v17.s[0]
+	fmla v5.4s, v21.4s, v17.s[0]
+	fmla v6.4s, v22.4s, v17.s[0]
+	fmla v7.4s, v23.4s, v17.s[0]
 
-		fmla v8.4s, v20.4s, v18.s[0]
-		fmla v9.4s, v21.4s, v18.s[0]
-		fmla v10.4s, v22.4s, v18.s[0]
-		fmla v11.4s, v23.4s, v18.s[0]
+	fmla v8.4s, v20.4s, v18.s[0]
+	fmla v9.4s, v21.4s, v18.s[0]
+	fmla v10.4s, v22.4s, v18.s[0]
+	fmla v11.4s, v23.4s, v18.s[0]
 
-		fmla v12.4s, v20.4s, v19.s[0]
-		fmla v13.4s, v21.4s, v19.s[0]
-		fmla v14.4s, v22.4s, v19.s[0]
-		fmla v15.4s, v23.4s, v19.s[0]
+	fmla v12.4s, v20.4s, v19.s[0]
+	fmla v13.4s, v21.4s, v19.s[0]
+	fmla v14.4s, v22.4s, v19.s[0]
+	fmla v15.4s, v23.4s, v19.s[0]
 
-		//load second row of A
-		add x0, x0, #32*4
-		ld1 { v20.4s, v21.4s, v22.4s, v23.4s}, [x0]
+	//load second row of A
+	add x0, x0, #32*4
+	ld1 { v20.4s, v21.4s, v22.4s, v23.4s}, [x0]
 
-		//calculate with second row of A
-		fmla v0.4s, v20.4s, v16.s[1]
-		fmla v1.4s, v21.4s, v16.s[1]
-		fmla v2.4s, v22.4s, v16.s[1]
-		fmla v3.4s, v23.4s, v16.s[1]
+	//calculate with second row of A
+	fmla v0.4s, v20.4s, v16.s[1]
+	fmla v1.4s, v21.4s, v16.s[1]
+	fmla v2.4s, v22.4s, v16.s[1]
+	fmla v3.4s, v23.4s, v16.s[1]
 
-		fmla v4.4s, v20.4s, v17.s[1]
-		fmla v5.4s, v21.4s, v17.s[1]
-		fmla v6.4s, v22.4s, v17.s[1]
-		fmla v7.4s, v23.4s, v17.s[1]
+	fmla v4.4s, v20.4s, v17.s[1]
+	fmla v5.4s, v21.4s, v17.s[1]
+	fmla v6.4s, v22.4s, v17.s[1]
+	fmla v7.4s, v23.4s, v17.s[1]
 
-		fmla v8.4s, v20.4s, v18.s[1]
-		fmla v9.4s, v21.4s, v18.s[1]
-		fmla v10.4s, v22.4s, v18.s[1]
-		fmla v11.4s, v23.4s, v18.s[1]
+	fmla v8.4s, v20.4s, v18.s[1]
+	fmla v9.4s, v21.4s, v18.s[1]
+	fmla v10.4s, v22.4s, v18.s[1]
+	fmla v11.4s, v23.4s, v18.s[1]
 
-		fmla v12.4s, v20.4s, v19.s[1]
-		fmla v13.4s, v21.4s, v19.s[1]
-		fmla v14.4s, v22.4s, v19.s[1]
-		fmla v15.4s, v23.4s, v19.s[1]
+	fmla v12.4s, v20.4s, v19.s[1]
+	fmla v13.4s, v21.4s, v19.s[1]
+	fmla v14.4s, v22.4s, v19.s[1]
+	fmla v15.4s, v23.4s, v19.s[1]
 
-		//load third row of A
-		add x0, x0, #32*4
-		ld1 { v20.4s, v21.4s, v22.4s, v23.4s}, [x0]
+	//load third row of A
+	add x0, x0, #32*4
+	ld1 { v20.4s, v21.4s, v22.4s, v23.4s}, [x0]
 
-		//calculate with third row of A
-		fmla v0.4s, v20.4s, v16.s[2]
-		fmla v1.4s, v21.4s, v16.s[2]
-		fmla v2.4s, v22.4s, v16.s[2]
-		fmla v3.4s, v23.4s, v16.s[2]
+	//calculate with third row of A
+	fmla v0.4s, v20.4s, v16.s[2]
+	fmla v1.4s, v21.4s, v16.s[2]
+	fmla v2.4s, v22.4s, v16.s[2]
+	fmla v3.4s, v23.4s, v16.s[2]
 
-		fmla v4.4s, v20.4s, v17.s[2]
-		fmla v5.4s, v21.4s, v17.s[2]
-		fmla v6.4s, v22.4s, v17.s[2]
-		fmla v7.4s, v23.4s, v17.s[2]
+	fmla v4.4s, v20.4s, v17.s[2]
+	fmla v5.4s, v21.4s, v17.s[2]
+	fmla v6.4s, v22.4s, v17.s[2]
+	fmla v7.4s, v23.4s, v17.s[2]
 
-		fmla v8.4s, v20.4s, v18.s[2]
-		fmla v9.4s, v21.4s, v18.s[2]
-		fmla v10.4s, v22.4s, v18.s[2]
-		fmla v11.4s, v23.4s, v18.s[2]
+	fmla v8.4s, v20.4s, v18.s[2]
+	fmla v9.4s, v21.4s, v18.s[2]
+	fmla v10.4s, v22.4s, v18.s[2]
+	fmla v11.4s, v23.4s, v18.s[2]
 
-		fmla v12.4s, v20.4s, v19.s[2]
-		fmla v13.4s, v21.4s, v19.s[2]
-		fmla v14.4s, v22.4s, v19.s[2]
-		fmla v15.4s, v23.4s, v19.s[2]
+	fmla v12.4s, v20.4s, v19.s[2]
+	fmla v13.4s, v21.4s, v19.s[2]
+	fmla v14.4s, v22.4s, v19.s[2]
+	fmla v15.4s, v23.4s, v19.s[2]
 
-		//load fourth row of A
-		add x0, x0, #32*4
-		ld1 { v20.4s, v21.4s, v22.4s, v23.4s}, [x0]
+	//load fourth row of A
+	add x0, x0, #32*4
+	ld1 { v20.4s, v21.4s, v22.4s, v23.4s}, [x0]
 
-		//calculate with fourth row of A
-		fmla v0.4s, v20.4s, v16.s[3]
-		fmla v1.4s, v21.4s, v16.s[3]
-		fmla v2.4s, v22.4s, v16.s[3]
-		fmla v3.4s, v23.4s, v16.s[3]
+	//calculate with fourth row of A
+	fmla v0.4s, v20.4s, v16.s[3]
+	fmla v1.4s, v21.4s, v16.s[3]
+	fmla v2.4s, v22.4s, v16.s[3]
+	fmla v3.4s, v23.4s, v16.s[3]
 
-		fmla v4.4s, v20.4s, v17.s[3]
-		fmla v5.4s, v21.4s, v17.s[3]
-		fmla v6.4s, v22.4s, v17.s[3]
-		fmla v7.4s, v23.4s, v17.s[3]
+	fmla v4.4s, v20.4s, v17.s[3]
+	fmla v5.4s, v21.4s, v17.s[3]
+	fmla v6.4s, v22.4s, v17.s[3]
+	fmla v7.4s, v23.4s, v17.s[3]
 
-		fmla v8.4s, v20.4s, v18.s[3]
-		fmla v9.4s, v21.4s, v18.s[3]
-		fmla v10.4s, v22.4s, v18.s[3]
-		fmla v11.4s, v23.4s, v18.s[3]
+	fmla v8.4s, v20.4s, v18.s[3]
+	fmla v9.4s, v21.4s, v18.s[3]
+	fmla v10.4s, v22.4s, v18.s[3]
+	fmla v11.4s, v23.4s, v18.s[3]
 
-		fmla v12.4s, v20.4s, v19.s[3]
-		fmla v13.4s, v21.4s, v19.s[3]
-		fmla v14.4s, v22.4s, v19.s[3]
-		fmla v15.4s, v23.4s, v19.s[3]
+	fmla v12.4s, v20.4s, v19.s[3]
+	fmla v13.4s, v21.4s, v19.s[3]
+	fmla v14.4s, v22.4s, v19.s[3]
+	fmla v15.4s, v23.4s, v19.s[3]
 
 	add x0, x0, #32*4
 

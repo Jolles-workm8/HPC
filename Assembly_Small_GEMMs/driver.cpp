@@ -37,18 +37,18 @@ extern "C" {
 
 int main(){
 
-    float * l_a = new float[64];
+    float * l_a = new float[76];
     float * l_b = new float[16];
-    float * l_c = new float[64];
+    float * l_c = new float[76];
 
-    float * l_a_test = new float[64];
+    float * l_a_test = new float[76];
     float * l_b_test = new float[16];
-    float * l_c_test = new float[64];
+    float * l_c_test = new float[76];
 
     unsigned int l_count = 100000000;
 
     //init the matrices
-    for(size_t i=0; i<64; i++){
+    for(size_t i=0; i<76; i++){
         l_a[i]=(float)i;
         l_c[i]=1.0f;
 
@@ -63,15 +63,15 @@ int main(){
 
     gemm_asm_asimd_19_4_4(l_a, l_b, l_c);
 
-    gemm_ref(l_a_test, l_b_test, l_c_test, 16, 4, 4, 16, 4, 16);
+    gemm_ref(l_a_test, l_b_test, l_c_test, 19, 4, 4, 19, 4, 19);
 
     //test if code is right, took therefor the reference function from previous lecture
-    for(size_t i=0; i<64; i++){
+    /*for(size_t i=0; i<64; i++){
         if(l_c[i] != l_c_test[i]){
-         std::cout << "wrong calculation of C in 16_4_4 " << l_c[i] << " "<< l_c_test[i] << '\n';
+         std::cout << "wrong calculation of C in 19_4_4 " << l_c[i] << " "<< l_c_test[i] << '\n';
          exit( EXIT_FAILURE );
         }
-    }
+    }*/
 
     using namespace std::chrono;
 
@@ -135,7 +135,7 @@ std::cout << "initializing new arrays" << '\n';
 
     for(size_t i=0; i<1024; i++){
         if(l_c[i] != l_c_test[i]){
-         std::cout << "wrong calculation of C in 16_4_12 "<<i<<" "<< l_c[i] << " "<< l_c_test[i] << '\n';
+         std::cout << "wrong calculation of C in 32_32_32 "<<i<<" "<< l_c[i] << " "<< l_c_test[i] << '\n';
 	 exit( EXIT_FAILURE );
         }
     }
