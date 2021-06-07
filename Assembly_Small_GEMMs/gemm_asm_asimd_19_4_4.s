@@ -173,7 +173,69 @@ gemm_asm_asimd_19_4_4:
 		ldr s9, [x0], #17*4
 
 		//perform fmas
-		fmal v0.2, v8.2s
+		fmla v0.2s, v8.2s, v16.s[0]
+		fmla s1, s9, v16.s[0]
+
+		fmla v2.2s, v8.2s, v17.s[0]
+		fmla s3, s9, v17.s[0]
+
+		fmla v4.2s, v8.2s, v18.s[0]
+		fmla s5, s9, v18.s[0]
+
+		fmla v6.2s, v8.2s, v19.s[0]
+		fmla s7, s9, v19.s[0]
+
+		//load A
+		ldr d8, [x0], #2*4
+		ldr s9, [x0], #17*4
+
+		//perform fmas
+		fmla v0.2s, v8.2s, v16.s[1]
+		fmla s1, s9, v16.s[1]
+
+		fmla v2.2s, v8.2s, v17.s[1]
+		fmla s3, s9, v17.s[1]
+
+		fmla v4.2s, v8.2s, v18.s[1]
+		fmla s5, s9, v18.s[1]
+
+		fmla v6.2s, v8.2s, v19.s[1]
+		fmla s7, s9, v19.s[1]
+
+		//load A
+		ldr d8, [x0], #2*4
+		ldr s9, [x0], #17*4
+
+		//perform fmas
+		fmla v0.2s, v8.2s, v16.s[2]
+		fmla s1, s9, v16.s[2]
+
+		fmla v2.2s, v8.2s, v17.s[2]
+		fmla s3, s9, v17.s[2]
+
+		fmla v4.2s, v8.2s, v18.s[2]
+		fmla s5, s9, v18.s[2]
+
+		fmla v6.2s, v8.2s, v19.s[2]
+		fmla s7, s9, v19.s[2]
+
+		//load A
+		ldr d8, [x0], #2*4
+		ldr s9, [x0], #17*4
+
+		//perform fmas
+		fmla v0.2s, v8.2s, v16.s[3]
+		fmla s1, s9, v16.s[3]
+
+		fmla v2.2s, v8.2s, v17.s[3]
+		fmla s3, s9, v17.s[3]
+
+		fmla v4.2s, v8.2s, v18.s[3]
+		fmla s5, s9, v18.s[3]
+
+		fmla v6.2s, v8.2s, v19.s[3]
+		fmla s7, s9, v19.s[3]
+
 		
 
 		//load C

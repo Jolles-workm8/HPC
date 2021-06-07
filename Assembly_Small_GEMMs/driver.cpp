@@ -66,12 +66,12 @@ int main(){
     gemm_ref(l_a_test, l_b_test, l_c_test, 19, 4, 4, 19, 4, 19);
 
     //test if code is right, took therefor the reference function from previous lecture
-    /*for(size_t i=0; i<64; i++){
+    for(size_t i=0; i<64; i++){
         if(l_c[i] != l_c_test[i]){
          std::cout << "wrong calculation of C in 19_4_4 " << l_c[i] << " "<< l_c_test[i] << '\n';
          exit( EXIT_FAILURE );
         }
-    }*/
+    }
 
     using namespace std::chrono;
 
