@@ -86,7 +86,7 @@ int main(){
 
     double seconds = duration<double>(end - start).count();
 
-    double gflops = measure_GFLOPs(seconds, 16, 4, 4, l_count);
+    double gflops = measure_GFLOPs(seconds, 19, 4, 4, l_count);
 
     std::cout << "Time: " << seconds << '\n'
         << "Executions: " << l_count << '\n'
