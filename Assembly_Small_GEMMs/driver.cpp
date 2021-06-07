@@ -94,7 +94,7 @@ int main(){
         << "Peak %: " << gflops/40.0 << '\n';
 
 
-/*
+
     delete[] l_a;
     delete[] l_b;
     delete[] l_c;
@@ -102,7 +102,7 @@ int main(){
     delete[] l_a_test;
     delete[] l_b_test;
     delete[] l_c_test;
-*/
+
 
 std::cout << "creating new arrays" << '\n';
 
@@ -160,12 +160,12 @@ std::cout << "initializing new arrays" << '\n';
         << "Peak %: " << gflops/40.0 << '\n';
 
 
-  //  delete[] l_a;
- //   delete[] l_b;
-//    delete[] l_c;
-//    delete[] l_a_test;
-//    delete[] l_b_test;
-//    delete[] l_c_test;
+    delete[] l_a;
+    delete[] l_b;
+    delete[] l_c;
+    delete[] l_a_test;
+    delete[] l_b_test;
+    delete[] l_c_test;
 
     return EXIT_SUCCESS;
 }
