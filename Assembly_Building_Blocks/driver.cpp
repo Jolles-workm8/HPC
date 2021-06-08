@@ -115,9 +115,11 @@ int main(){
     //init the matrices
     for(size_t i=0; i<192; i++){
         l_a[i]=(float)i;
-        l_c[i]=1.0f;
-
         l_a_test[i]=(float)i;
+    }
+
+    for(size_t i=0; i<64, i++){
+        l_c[i]=1.0f;
         l_c_test[i]=1.0f;
     }
 

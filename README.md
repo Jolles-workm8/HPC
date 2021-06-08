@@ -139,3 +139,10 @@ Team | Time(s) | #executions | GFLOPs | %peak | Kernel
 --- | --- | --- | --- | --- | ---
 Gipfelstürmer | 2.52 | 100000000 | 20.30 | 50.8 | 16_4_4
 Gipfelstürmer | 5.04 | 100000000 | 30.46 | 76.14 | 16_4_12
+
+## Assembly Small Gemm's
+
+Team | Time(s) | #executions | GFLOPs | %peak | Kernel
+--- | --- | --- | --- | --- | ---
+Gipfelstürmer | 3.78 | 100000000 | 16.04 | 40.1 | 19_4_4
+Gipfelstürmer | 1.74 | 1000000 | 37.54 | 93.8 | 32_32_32
