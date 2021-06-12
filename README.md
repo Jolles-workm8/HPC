@@ -153,6 +153,7 @@ Find the code for this exercise in ./SVE
 Running the bash script "run.sh" will compile and execute the code.
 1. The scrip executes four examples each with vector lenghts of 128. You can run the code yourself by using "a.out" after running the bash script.
 2. The number of emulated instruction are printed when using the script.
+
 Example | Instructions
 --- | --- 
 sve_load_store | 2
