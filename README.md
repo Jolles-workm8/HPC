@@ -63,7 +63,7 @@ gemm_compiler_nkm: | 0.36406 | 2.41972	| 11.9447 | -
 
 ## Assembly on AArch64
 
-1. Find the our approach in to the first exercise in ./Assembly_code/Hello
+1. Find our approach in to the first exercise in ./Assembly_code/Hello
 
 2. 
 ..1. The contents on the registers are:
@@ -150,5 +150,7 @@ Gipfelstürmer | 1.74 | 1000000 | 37.54 | 93.8 | 32_32_32
 ## SVE
 
 Find the code for this exercise in ./SVE
-
-1. 
+Running the bash script "run.sh" will compile and execute the code.
+1. The scrip executes four examples each with vector lenghts of 128. You can run the code yourself by using "a.out" after running the bash script.
+2. The number of emulated instruction are printed when using the script.
+3. libmemtrace_emulated.so still throws an error and won't output the correct data.
