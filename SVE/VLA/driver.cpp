@@ -32,20 +32,23 @@ int main( int i_argc, char const * i_argv[]){
     float l_c_low[l_ex] = {0};
     float l_c_high[l_ex] = {0};
 
-    for(size_t l_en=0; l_en<128; l_en++){
-        l_dataIn[l_en]= (l_en+1)*2;
+    for(size_t l_en=0; l_en<l_ex; l_en++){
+        l_a[l_en]= (l_en+1)*2;
+	l_b[l_en]= (l_en+1)*2;
+
     }
 
     triad_high(l_ex, l_a, l_b, l_c_high);
+
     triad_low(l_ex, l_a, l_b, l_c_low);
 
-    for(size_t i=0; i<64; i++){
-      float error = abs(l_c_low[i] - l_c_high[i])
+    for(size_t i=0; i<l_ex; i++){
+      float error = abs(l_c_low[i] - l_c_high[i]);
       if(error> 0.000001){
-        std::cout << "wrong calculation of C in 19_4_4 " << l_c_low[i] << " "<< l_c_high<< "\n"
+        std::cout << "wrong calculation of C in 19_4_4 at "<<i <<" with " << l_c_low[i] << " "<< l_c_high << " \n";
         exit( EXIT_FAILURE );
       }
     }
-
+    std::cout << "success" << "\n";
     return EXIT_SUCCESS;
 }
