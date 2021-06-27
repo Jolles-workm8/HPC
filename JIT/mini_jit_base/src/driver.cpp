@@ -1,6 +1,7 @@
 #include <iostream>
 #include "generators/Simple.h"
 #include "generators/Loop.h"
+#include "generators/MyExample.h"
 
 int main() {
   std::cout << "###########################" << std::endl;
@@ -24,6 +25,13 @@ int main() {
   std::cout << "  running" << std::endl;
   std::cout << "    result: " << l_funcLoop() << std::endl;
 
+  std::cout << "MyExample:" << std::endl;
+  std::cout << "  generating" << std::endl;
+  mini_jit::generators::MyExample l_myexample;
+  uint32_t (* l_funcMyExample)() = l_myexample.generate();
+
+  std::cout << "  running" << std::endl;
+  std::cout << "    result: " << l_funcMyExample() << std::endl;
 
   std::cout << "##############################" << std::endl;
   std::cout << "### mini_jit says bye, bye ###" << std::endl;

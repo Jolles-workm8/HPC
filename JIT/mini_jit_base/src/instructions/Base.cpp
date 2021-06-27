@@ -53,3 +53,19 @@ uint32_t mini_jit::instructions::Base::dpSubImm( uint8_t  i_regGpDes,
 
   return l_ins;
 }
+
+uint32_t mini_jit::instructions::Base::dpMAdd(	uint8_t	i_regGpDes,
+						uint8_t	i_regGpSrc1,
+						uint8_t	i_regGpSrc2,
+						uint8_t	i_regGpSrc3,
+						uint8_t	i_size){
+  uint32_t l_ins =  0x1B000000;
+
+  l_ins |= 0x1f & i_regGpDes;
+  l_ins |= (0x1f & i_regGpSrc1) << 5;
+  l_ins |= (0x1f & i_regGpSrc2) << 16;
+  l_ins |= (0x1f & i_regGpSrc3) << 10;
+  l_ins |= (0x1f & i_size) << 31;
+
+  return l_ins;
+}
