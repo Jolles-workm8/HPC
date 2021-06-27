@@ -163,3 +163,22 @@ sve_mul_load_store | 3
 
 
 3. libmemtrace_emulated.so still throws an error and won't output the correct data.
+
+
+## JIT
+
+Thecode for this exercise can be found in ./SVE.
+1. Using "make" will compile the code and generate the executable mini_jit. Using "make test" will generate the unit test executable. If everything is working, the output of the tests should look like this:
+
+===============================================================================
+All tests passed (10 assertions in 5 test cases)
+
+2. With "objdump -m aarch64 -b binary -D" it is possible to disassemble the the generated kernels. After disassembling the example loop will look like this:
+
+0000000000000000 <.data>:  
+   0:	52800000 	mov	w0, #0x0                   	// #0  
+   4:	52800401 	mov	w1, #0x20                  	// #32  
+   8:	11000400 	add	w0, w0, #0x1  
+   c:	51000421 	sub	w1, w1, #0x1  
+  10:	35ffffc1 	cbnz	w1, 0x8  
+  14:	d65f03c0 	ret  
