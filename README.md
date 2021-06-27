@@ -163,3 +163,12 @@ sve_mul_load_store | 3
 
 
 3. libmemtrace_emulated.so still throws an error and won't output the correct data.
+
+
+## JIT
+
+Thecode for this exercise can be found in ./SVE.
+1. Using "make" will compile the code and generate the executable mini_jit. Using "make test" will generate the unit test executable. If everything is working, the output of the tests should look like this:
+
+===============================================================================
+All tests passed (10 assertions in 5 test cases)
