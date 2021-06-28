@@ -167,11 +167,12 @@ sve_mul_load_store | 3
 
 ## JIT
 
-Thecode for this exercise can be found in ./SVE.
+The code for this exercise can be found in ./SVE/mini_jit_base/
 1. Using "make" will compile the code and generate the executable mini_jit. Using "make test" will generate the unit test executable. If everything is working, the output of the tests should look like this:
 
 ===============================================================================
 All tests passed (10 assertions in 5 test cases)
+
 
 2. With "objdump -m aarch64 -b binary -D" it is possible to disassemble the the generated kernels. After disassembling the example loop will look like this:
 
@@ -186,4 +187,4 @@ All tests passed (10 assertions in 5 test cases)
 
 3. We implemented a new kernel 'mini_jit::generators::MyExample' which multiplies 2 by 5 and adds 4 to the result.
 
-4. We did run the code on our own Raspberry Pi 4 (2018) Model B, which has an has an ARM microarchitecture. We did not emulate on x86.
+4. We did run the code on our own Raspberry Pi 4 (2018) Model B, which has an has an ARM microarchitecture which brought the same output like in 2. . We did not emulate on x86.
