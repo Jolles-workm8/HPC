@@ -58,14 +58,14 @@ lambda: 32 | 0.330431 | 2.36279 | 2.32706 | 5.02721
 lambda: 48 | 0.327675 | 2.41029 | 2.38561 | 5.2072
 lambda: 64 | 0.324477 | 2.42677 | 2.4125 | 5.31401
 gemm_compiler_mnk: | 0.371008 | 2.66795 | 2.33032 | -
-gemm_compiler_nkm: | 0.36406 | 2.41972	| 11.9447 | - 
+gemm_compiler_nkm: | 0.36406 | 2.41972	| 11.9447 | -
 
 
 ## Assembly on AArch64
 
 1. Find our approach in to the first exercise in ./Assembly_code/Hello
 
-2. 
+2.
 ..1. The contents on the registers are:
 ..* X1:400
 ..* X2:400
@@ -73,7 +73,7 @@ gemm_compiler_nkm: | 0.36406 | 2.41972	| 11.9447 | -
 ..* X4:600
 ..* X5:700
 
-..2. 
+..2.
 ..* not ok #1 :
     ==1174859== Invalid read of size 8
     ==1174859== at 0x40074C: main (driver.cpp:18)
@@ -125,7 +125,7 @@ gemm_compiler_nkm: | 0.36406 | 2.41972	| 11.9447 | -
     ==1176053== by 0x4006F7: main (driver.cpp:9)
 
     Very similiar to the one before. Now X0 starts as the 7th entry of l_a. Increasing it by 8 byte in l:6 makes it 8th entry. Loading from this adrees advancing by 16 Byte makes it the 11th entry of l_a which doesnt exist. This explains the error message 0 byte behinf allocated block.
-   
+
 
 3.
 
@@ -155,7 +155,7 @@ Running the bash script "run.sh" will compile and execute the code.
 2. The number of emulated instruction are printed when using the script.
 
 Example | Instructions
---- | --- 
+--- | ---
 sve_load_store | 2
 sve_predicated_load_store | 3
 sve_predicated_argument_load_store | 3
@@ -182,3 +182,8 @@ All tests passed (10 assertions in 5 test cases)
    c:	51000421 	sub	w1, w1, #0x1  
   10:	35ffffc1 	cbnz	w1, 0x8  
   14:	d65f03c0 	ret  
+
+
+3. We implemented a new kernel 'mini_jit::generators::MyExample' which multiplies 2 by 5 and adds 4 to the result.
+
+4. We did run the code on our own Raspberry Pi 4 (2018) Model B, which has an has an ARM microarchitecture. We did not emulate on x86.
