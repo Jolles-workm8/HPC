@@ -5,23 +5,23 @@
 #include "../instructions/Base.h"
 
 namespace mini_jit {
-  namespace generators {
-    class Simple;
-  }
+namespace generators {
+class Simple;
 }
+} // namespace mini_jit
 
 class mini_jit::generators::Simple {
-  private:
-    //! kernel backend
-    backend::Kernel m_kernel;
-    
-  public:
-    /**
-     * Generates a simple kernel which sets the value three to register w0.
-     *
-     * @return function pointer to kernel.
-     **/
-    uint32_t ( *generate() )();
+private:
+  //! kernel backend
+  backend::Kernel m_kernel;
+
+public:
+  /**
+   * Generates a simple kernel which sets the value three to register w0.
+   *
+   * @return function pointer to kernel.
+   **/
+  uint32_t (*generate())();
 };
 
 #endif

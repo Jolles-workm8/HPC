@@ -5,23 +5,23 @@
 #include "../instructions/Base.h"
 
 namespace mini_jit {
-  namespace generators {
-    class MyExample;
-  }
+namespace generators {
+class MyExample;
 }
+} // namespace mini_jit
 
 class mini_jit::generators::MyExample {
-  private:
-    //! kernel backend
-    backend::Kernel m_kernel;
-    
-  public:
-    /**
-     * Generates a simple kernel which multiplies 2 by 5 and adds 4.
-     *
-     * @return function pointer to kernel.
-     **/
-    uint32_t ( *generate() )();
+private:
+  //! kernel backend
+  backend::Kernel m_kernel;
+
+public:
+  /**
+   * Generates a simple kernel which multiplies 2 by 5 and adds 4.
+   *
+   * @return function pointer to kernel.
+   **/
+  uint32_t (*generate())();
 };
 
 #endif
