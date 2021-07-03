@@ -8,9 +8,10 @@ mini_jit: src/driver.cpp src/instructions/Base.cpp src/instructions/Asimd.cpp sr
 		g++ ${OPTIONS} -c src/generators/Simple.cpp -o ${BUILD_DIR}/generators/Simple.o
 		g++ ${OPTIONS} -c src/generators/Loop.cpp -o ${BUILD_DIR}/generators/Loop.o
 		g++ ${OPTIONS} -c src/generators/MyExample.cpp -o ${BUILD_DIR}/generators/MyExample.o
+		g++ ${OPTIONS} -c src/generators/SmallGEMM.cpp -o ${BUILD_DIR}/generators/SmallGEMM.o
 		g++ ${OPTIONS} src/driver.cpp ${BUILD_DIR}/instructions/Base.o ${BUILD_DIR}/instructions/Asimd.o \
 		                              ${BUILD_DIR}/backend/Kernel.o \
-		                              ${BUILD_DIR}/generators/Simple.o ${BUILD_DIR}/generators/Loop.o ${BUILD_DIR}/generators/MyExample.o \
+		                              ${BUILD_DIR}/generators/Simple.o ${BUILD_DIR}/generators/Loop.o ${BUILD_DIR}/generators/MyExample.o ${BUILD_DIR}/generators/SmallGEMM.o \
 		    -o ${BUILD_DIR}/mini_jit
 
 test: src/test.cpp src/driver.cpp src/instructions/Base.cpp src/instructions/Asimd.cpp src/backend/Kernel.cpp src/generators/Simple.cpp src/generators/Loop.cpp src/instructions/Asimd.test.cpp

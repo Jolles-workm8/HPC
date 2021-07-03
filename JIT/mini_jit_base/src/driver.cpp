@@ -1,6 +1,7 @@
 #include "generators/Loop.h"
 #include "generators/MyExample.h"
 #include "generators/Simple.h"
+#include "generators/SmallGEMM.h"
 #include <iostream>
 
 int main() {
