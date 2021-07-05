@@ -1,5 +1,7 @@
 BUILD_DIR = ./build
-OPTIONS = -pedantic -Wall -Wextra -Werror
+OPTIONS = -pedantic -Wall -Wextra -Werror -O3
+
+#
 
 mini_jit: src/driver.cpp src/instructions/Base.cpp src/instructions/Asimd.cpp src/backend/Kernel.cpp src/generators/Simple.cpp src/generators/Loop.cpp
 		g++ ${OPTIONS} -c src/instructions/Base.cpp -o ${BUILD_DIR}/instructions/Base.o

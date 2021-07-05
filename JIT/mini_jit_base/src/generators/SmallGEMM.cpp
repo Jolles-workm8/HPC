@@ -7,9 +7,9 @@ void (*mini_jit::generators::SmallGEMM::generate( uint32_t i_m,
                                                                   float * io_c) {
   uint32_t l_ins = 0;
 
-  if(i_m != 16 || i_n != 4 || i_k != 4){
-    exit( EXIT_FAILURE );
-  }
+  if(i_m == 16 || i_n == 4 || i_k == 4){
+   
+  
 
 
   mini_jit::instructions::Asimd::arrspec_t l_as = mini_jit::instructions::Asimd::arrspec_t::s4;
@@ -30,19 +30,19 @@ void (*mini_jit::generators::SmallGEMM::generate( uint32_t i_m,
   //load Matrix C
   l_ins = instructions::Asimd::lsLd1MultipleNoOff(0, 2, l_as, 4);
   m_kernel.addInstruction(l_ins);
-  l_ins = instructions::Base::dpAddImm(2,2,16*4,0);
+  l_ins = instructions::Base::dpAddImm(2,2,16*4,1);
   m_kernel.addInstruction(l_ins);
   l_ins = instructions::Asimd::lsLd1MultipleNoOff(4, 2, l_as, 4);
   m_kernel.addInstruction(l_ins);
-  l_ins = instructions::Base::dpAddImm(2,2,16*4,0);
+  l_ins = instructions::Base::dpAddImm(2,2,16*4,1);
   m_kernel.addInstruction(l_ins);
   l_ins = instructions::Asimd::lsLd1MultipleNoOff(8, 2, l_as, 4);
   m_kernel.addInstruction(l_ins);
-  l_ins = instructions::Base::dpAddImm(2,2,16*4,0);
+  l_ins = instructions::Base::dpAddImm(2,2,16*4,1);
   m_kernel.addInstruction(l_ins);
   l_ins = instructions::Asimd::lsLd1MultipleNoOff(12, 2, l_as, 4);
   m_kernel.addInstruction(l_ins);
-  l_ins = instructions::Base::dpSubImm(2,2,16*4*3,0);
+  l_ins = instructions::Base::dpSubImm(2,2,16*4*3,1);
   m_kernel.addInstruction(l_ins);
 
 
@@ -57,7 +57,7 @@ void (*mini_jit::generators::SmallGEMM::generate( uint32_t i_m,
   //load first row of A
   l_ins = instructions::Asimd::lsLd1MultipleNoOff(20, 0, l_as, 4);
   m_kernel.addInstruction(l_ins);
-  l_ins = instructions::Base::dpAddImm(0,0,16*4,0);
+  l_ins = instructions::Base::dpAddImm(0,0,16*4,1);
   m_kernel.addInstruction(l_ins);
 
   //calculate first row of A
@@ -104,7 +104,7 @@ void (*mini_jit::generators::SmallGEMM::generate( uint32_t i_m,
   //load second row of A
   l_ins = instructions::Asimd::lsLd1MultipleNoOff(20, 0, l_as, 4);
   m_kernel.addInstruction(l_ins);
-  l_ins = instructions::Base::dpAddImm(0,0,16*4,0);
+  l_ins = instructions::Base::dpAddImm(0,0,16*4,1);
   m_kernel.addInstruction(l_ins);
 
   //calculate second row of A
@@ -151,7 +151,7 @@ void (*mini_jit::generators::SmallGEMM::generate( uint32_t i_m,
   //load third row of A
   l_ins = instructions::Asimd::lsLd1MultipleNoOff(20, 0, l_as, 4);
   m_kernel.addInstruction(l_ins);
-  l_ins = instructions::Base::dpAddImm(0,0,16*4,0);
+  l_ins = instructions::Base::dpAddImm(0,0,16*4,1);
   m_kernel.addInstruction(l_ins);
 
   //calculate second row of A
@@ -241,15 +241,15 @@ void (*mini_jit::generators::SmallGEMM::generate( uint32_t i_m,
   //store C
   l_ins = instructions::Asimd::lsSt1MultipleNoOff(0, 2, l_as, 4);
   m_kernel.addInstruction(l_ins);
-  l_ins = instructions::Base::dpAddImm(2,2,16*4,0);
+  l_ins = instructions::Base::dpAddImm(2,2,16*4,1);
   m_kernel.addInstruction(l_ins);
   l_ins = instructions::Asimd::lsSt1MultipleNoOff(4, 2, l_as, 4);
   m_kernel.addInstruction(l_ins);
-  l_ins = instructions::Base::dpAddImm(2,2,16*4,0);
+  l_ins = instructions::Base::dpAddImm(2,2,16*4,1);
   m_kernel.addInstruction(l_ins);
   l_ins = instructions::Asimd::lsSt1MultipleNoOff(8, 2, l_as, 4);
   m_kernel.addInstruction(l_ins);
-  l_ins = instructions::Base::dpAddImm(2,2,16*4,0);
+  l_ins = instructions::Base::dpAddImm(2,2,16*4,1);
   m_kernel.addInstruction(l_ins);
   l_ins = instructions::Asimd::lsSt1MultipleNoOff(12, 2, l_as, 4);
   m_kernel.addInstruction(l_ins);
@@ -257,29 +257,33 @@ void (*mini_jit::generators::SmallGEMM::generate( uint32_t i_m,
 
 
   //restore
-  // ldp  d14,  d15, [sp, #-16]!
-  m_kernel.addInstruction( 0x6DFF3FEE);
+  // ldp  d14,  d15, [sp], #16
+  m_kernel.addInstruction( 0x6CC13FEE);
 
-  // ldp  d12,  d13, [sp, #-16]!
-  m_kernel.addInstruction( 0x6DFF37EC );
+  // ldp  d12,  d13, [sp], #16
+  m_kernel.addInstruction( 0x6CC137EC );
 
-  // ldp  d10,  d11, [sp, #-16]!
-  m_kernel.addInstruction( 0x6DFF2FEA );
+  // ldp  d10,  d11, [sp], #16
+  m_kernel.addInstruction( 0x6CC12FEA );
 
-  // ldp  d8,  d9, [sp, #-16]!
-  m_kernel.addInstruction( 0x6DFF27E8 );
+  // ldp  d8,  d9, [sp], #16
+  m_kernel.addInstruction( 0x6CC127E8 );
 
   // ret
   l_ins = instructions::Base::bRet();
   m_kernel.addInstruction(l_ins);
 
   // we might debug through file-io
-  // std::string l_file = "SmallGEMM.bin";
-  // m_kernel.write( l_file.c_str() );
+  std::string l_file = "SmallGEMM.bin";
+  m_kernel.write( l_file.c_str() );
 
   m_kernel.setKernel();
 
-  return (void(*) (float const * i_a,
-                  float const * i_b,
-                  float       * io_c))m_kernel.getKernel();
+  return (void(*) (float const *,
+                  float const *,
+                  float       *))m_kernel.getKernel();
+  }
+  else {
+     exit( EXIT_FAILURE );
+  }
 }
